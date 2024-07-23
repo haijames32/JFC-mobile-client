@@ -1,5 +1,5 @@
 import { Modal, StyleSheet, Text, ActivityIndicator, View } from "react-native"
-import { WINDOW_WIDTH, myFonts } from "../../utils"
+import { WINDOW_WIDTH, myColors, myFonts } from "../../utils"
 
 const Loading = () => {
    return (
@@ -8,7 +8,10 @@ const Loading = () => {
          transparent>
          <View style={styles.centeredView}>
             <View style={styles.modalView}>
-               <ActivityIndicator size="large" />
+               <ActivityIndicator
+                  size="large"
+                  style={styles.loading}
+                  color={myColors.primary} />
                <Text style={styles.message}>Loading...</Text>
             </View>
          </View>
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
    },
    modalView: {
       width: WINDOW_WIDTH * 0.35,
-      backgroundColor: '#fff',
+      backgroundColor: myColors.background,
       borderRadius: 15,
       paddingVertical: 20,
       paddingHorizontal: 20,
@@ -44,6 +47,7 @@ const styles = StyleSheet.create({
    message: {
       fontSize: 16,
       marginTop: 7,
-      fontFamily: myFonts.medium
+      fontFamily: myFonts.medium,
+      color: myColors.black
    }
 })
