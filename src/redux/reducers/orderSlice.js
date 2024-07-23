@@ -5,11 +5,11 @@ const initialState = {
 
 }
 
-const productSlice = createSlice({
-   name: 'product',
+const orderSlice = createSlice({
+   name: 'order',
    initialState,
    reducers: {},
    extraReducers: {}
 })
 
-export default productSlice.reducer
+export default orderSlice.reducer
