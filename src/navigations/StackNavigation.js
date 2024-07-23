@@ -7,9 +7,12 @@ import {
    EditProfile,
    Profile,
    Register,
-   Home
+   Home,
+   Cart,
+   Confirm,
+   Loading,
+   Message
 } from '../screens/index'
-
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +27,16 @@ const StackNavigation = () => {
             <Stack.Screen name="DetailsCategory" component={DetailsCategory} />
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="EditProfile" component={EditProfile} />
+            <Stack.Screen name="Cart" component={Cart} />
+            <Stack.Group
+               screenOptions={{
+                  presentation: 'transparentModal',
+                  animation: 'fade'
+               }}>
+               <Stack.Screen name="Loading" component={Loading} />
+               <Stack.Screen name="Message" component={Message} />
+               <Stack.Screen name="Confirm" component={Confirm} />
+            </Stack.Group>
          </Stack.Navigator>
       </NavigationContainer>
    )

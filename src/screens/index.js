@@ -6,18 +6,21 @@ import DetailsCategory from './Category/DetailsCategory'
 import Home from './Home/Home'
 import EditProfile from './Profile/EditProfile'
 import Profile from './Profile/Profile'
-import Screen from './screen'
-
+import Message from './Modals/Message'
+import Confirm from './Modals/Confirm'
+import Loading from './Modals/Loading'
 
 
 export {
    Login,
-   Screen,
    Category,
    DetailsCategory,
    EditProfile,
    Profile,
    Register,
    Home,
-   Cart
+   Cart,
+   Confirm,
+   Loading,
+   Message
 }
