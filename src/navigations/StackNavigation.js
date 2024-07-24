@@ -13,7 +13,11 @@ import {
    Loading,
    Message,
    ChangePasword,
-   ProductDetails
+   ProductDetails,
+   Splash,
+   CreateOrder,
+   Order,
+   OrderDetails,
 } from '../screens/index'
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +36,10 @@ const StackNavigation = () => {
             <Stack.Screen name="Cart" component={Cart} />
             <Stack.Screen name="ProductDetails" component={ProductDetails} />
             <Stack.Screen name="ChangePasword" component={ChangePasword} />
+            <Stack.Screen name="Splash" component={Splash} />
+            <Stack.Screen name="Order" component={Order} />
+            <Stack.Screen name="OrderDetails" component={OrderDetails} />
+            <Stack.Screen name="CreateOrder" component={CreateOrder} />
             <Stack.Group
                screenOptions={{
                   presentation: 'transparentModal',

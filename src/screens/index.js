@@ -11,6 +11,10 @@ import Confirm from './Modals/Confirm'
 import Loading from './Modals/Loading'
 import ProductDetails from './Product/ProductDetails'
 import ChangePasword from './Profile/ChangePassword'
+import Splash from './Splash/Splash'
+import Order from './Order/Order'
+import OrderDetails from './Order/OrderDetails'
+import CreateOrder from './Order/CreateOrder'
 
 
 export {
@@ -26,5 +30,9 @@ export {
    Loading,
    Message,
    ProductDetails,
-   ChangePasword
+   ChangePasword,
+   Splash,
+   CreateOrder,
+   Order,
+   OrderDetails
 }

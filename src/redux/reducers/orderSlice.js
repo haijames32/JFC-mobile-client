@@ -9,7 +9,6 @@ const orderSlice = createSlice({
    name: 'order',
    initialState,
    reducers: {},
-   extraReducers: {}
 })
 
 export default orderSlice.reducer
