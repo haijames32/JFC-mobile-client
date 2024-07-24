@@ -11,7 +11,9 @@ import {
    Cart,
    Confirm,
    Loading,
-   Message
+   Message,
+   ChangePasword,
+   ProductDetails
 } from '../screens/index'
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +30,8 @@ const StackNavigation = () => {
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="EditProfile" component={EditProfile} />
             <Stack.Screen name="Cart" component={Cart} />
+            <Stack.Screen name="ProductDetails" component={ProductDetails} />
+            <Stack.Screen name="ChangePasword" component={ChangePasword} />
             <Stack.Group
                screenOptions={{
                   presentation: 'transparentModal',

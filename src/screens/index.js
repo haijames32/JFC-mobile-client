@@ -9,6 +9,8 @@ import Profile from './Profile/Profile'
 import Message from './Modals/Message'
 import Confirm from './Modals/Confirm'
 import Loading from './Modals/Loading'
+import ProductDetails from './Product/ProductDetails'
+import ChangePasword from './Profile/ChangePassword'
 
 
 export {
@@ -22,5 +24,7 @@ export {
    Cart,
    Confirm,
    Loading,
-   Message
+   Message,
+   ProductDetails,
+   ChangePasword
 }
