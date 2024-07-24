@@ -1,8 +1,8 @@
 
 export const myColors = {
    primary: '#e51c40',
-   while: '#fff',
-   black: '#000',
+   text_while: '#fff',
+   text_black: '#000',
    background: '#f3bb32'
 }
 
