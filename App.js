@@ -1,14 +1,15 @@
-import { store } from './src/redux/store'
+import StackNavigation from './src/navigations/StackNavigation'
+import { store, persistor } from './src/redux/store'
 import { Provider } from 'react-redux'
-import StackNavigation from './src/navigations/StackNavigation';
-import { useColorScheme } from 'react-native';
-import { useEffect } from 'react';
+import { PersistGate } from 'redux-persist/integration/react'
 
 
 const App = () => {
   return (
     <Provider store={store}>
-      <StackNavigation />
+      <PersistGate persistor={persistor}>
+        <StackNavigation />
+      </PersistGate>
     </Provider>
   );
 }
