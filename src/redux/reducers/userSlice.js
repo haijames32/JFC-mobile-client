@@ -225,7 +225,7 @@ const userSlice = createSlice({
             state.isLoading = false
             state.isError = false
             if (action.payload) {
-               state.listAddress.filter(address => address._id !== action.payload)
+               state.listAddress.filter(address => address._id !== action.payload._id)
             }
          })
          .addCase(deleteAddress.rejected, (state, action) => {
@@ -235,6 +235,5 @@ const userSlice = createSlice({
    }
 })
 
-// Action creators are generated for each case reducer function
 // export const { increment, decrement } = userSlice.actions
 export default userSlice.reducer
