@@ -12,24 +12,24 @@ export const helper = {
       if (useRoute().name == 'Loading') useNavigation().goBack()
    },
    showMsgError: (
-      title,
-      message,
-      onPress = useNavigation().goBack()
+      message = '',
+      onPress = useNavigation().goBack(),
+      title = 'Message'
    ) => {
       useNavigation().navigate('Message', { title, message, msgType: 'error', onOk: onPress })
    },
    showMsgSuccess: (
-      title,
       message,
-      onPress = useNavigation().goBack()
+      onPress = useNavigation().goBack(),
+      title = 'Message'
    ) => {
       useNavigation().navigate('Message', { title, message, msgType: 'success', onOk: onPress })
    },
    showMsgConfirm: (
-      title,
       message,
+      onOk,
       onCancel = useNavigation().goBack(),
-      onOk
+      title = 'Message',
    ) => {
       useNavigation().navigate('Confirm', { title, message, onCancel, onOk })
    },

@@ -17,9 +17,9 @@ const persistConfig = {
    storage: AsyncStorage
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export const store = configureStore({
+const store = configureStore({
    reducer: persistedReducer,
    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: {
@@ -30,3 +30,4 @@ export const store = configureStore({
 
 
 export const persistor = persistStore(store)
+export { store }
