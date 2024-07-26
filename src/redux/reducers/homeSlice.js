@@ -4,8 +4,9 @@ import { helper } from '../../utils'
 
 const rootUrl = process.env.LOCALHOST
 
-export const productDetails = createAsyncThunk('productSlice/productDetails', async (id) => {
-   const url = `${rootUrl}/api/product/${id}`
+
+export const getListCategory = createAsyncThunk('homeSlice/getListCategory', async (id) => {
+   const url = `${rootUrl}/api/category/${id}`
    try {
       const res = await axios.get(url)
       if (res.status == 200) {
@@ -21,21 +22,32 @@ export const productDetails = createAsyncThunk('productSlice/productDetails', as
    }
 })
 
+export const getListProductByCate = createAsyncThunk('homeSlice/getListProductByCate', async (id) => {
+   const url = `${rootUrl}/api/category/${id}`
+   try {
+      const res = await axios.get(url)
+      if (res.status == 200) {
+         return res.data.data
+      } else {
+         helper.showMsgError(res.data.message)
+         return false
+      }
+   } catch (error) {
+      helper.showMsgError(error.message)
+      console.log('Error: ', error)
+      return false
+   }
+})
+
+
 const initialState = {
-   product: {
-      id: '',
-      name: '',
-      price: 0,
-      image: '',
-      description: '',
-      category: {}
-   },
+   listCategory: [],
    isLoading: false,
    isError: false
 }
 
-const productSlice = createSlice({
-   name: 'product',
+const homeSlice = createSlice({
+   name: 'home',
    initialState,
    reducers: {},
    extraReducers: builder => {
@@ -58,4 +70,4 @@ const productSlice = createSlice({
    }
 })
 
-export default productSlice.reducer
+export default homeSlice.reducer
