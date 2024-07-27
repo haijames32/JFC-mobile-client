@@ -5,8 +5,8 @@ import { helper } from '../../utils'
 const rootUrl = process.env.LOCALHOST
 
 
-export const getListCategory = createAsyncThunk('homeSlice/getListCategory', async (id) => {
-   const url = `${rootUrl}/api/category/${id}`
+export const getListCategory = createAsyncThunk('homeSlice/getListCategory', async () => {
+   const url = `${rootUrl}/api/category`
    try {
       const res = await axios.get(url)
       if (res.status == 200) {
@@ -22,14 +22,31 @@ export const getListCategory = createAsyncThunk('homeSlice/getListCategory', asy
    }
 })
 
-export const getListProductByCate = createAsyncThunk('homeSlice/getListProductByCate', async (id) => {
-   const url = `${rootUrl}/api/category/${id}`
+export const getListProductByCate = createAsyncThunk('homeSlice/getListProductByCate', async (id) => {//Input categoryId
+   const url = `${rootUrl}/api/productByCategory/${id}`
    try {
       const res = await axios.get(url)
       if (res.status == 200) {
          return res.data.data
       } else {
          helper.showMsgError(res.data.message)
+         return false
+      }
+   } catch (error) {
+      helper.showMsgError(error.message)
+      console.log('Error: ', error)
+      return false
+   }
+})
+
+export const getListOrder = createAsyncThunk('homeSlice/getListOrder', async (id) => {//Input userId
+   const url = `${rootUrl}/api/user/order/${id}`
+   try {
+      const res = await axios.get(url)
+      if (res.status == 200) {
+         return res.data.data
+      } else {
+         helper.showMsgError(error.message)
          return false
       }
    } catch (error) {
@@ -42,6 +59,8 @@ export const getListProductByCate = createAsyncThunk('homeSlice/getListProductBy
 
 const initialState = {
    listCategory: [],
+   listProduct: [],
+   listOrder: [],
    isLoading: false,
    isError: false
 }
@@ -52,18 +71,51 @@ const homeSlice = createSlice({
    reducers: {},
    extraReducers: builder => {
       builder
-         .addCase(productDetails.pending, (state, action) => {
+         // getListCategory
+         .addCase(getListCategory.pending, (state, action) => {
             state.isLoading = true
             state.isError = false
          })
-         .addCase(productDetails.fulfilled, (state, action) => {
+         .addCase(getListCategory.fulfilled, (state, action) => {
             state.isLoading = false
             state.isError = false
             if (action.payload) {
-               state.product = action.payload
+               state.listCategory = action.payload
             }
          })
-         .addCase(productDetails.rejected, (state, action) => {
+         .addCase(getListCategory.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+         })
+         // getListProductByCate
+         .addCase(getListProductByCate.pending, (state, action) => {
+            state.isLoading = true
+            state.isError = false
+         })
+         .addCase(getListProductByCate.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isError = false
+            if (action.payload) {
+               state.listProduct = action.payload
+            }
+         })
+         .addCase(getListProductByCate.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+         })
+         // getListOrder
+         .addCase(getListOrder.pending, (state, action) => {
+            state.isLoading = true
+            state.isError = false
+         })
+         .addCase(getListOrder.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isError = false
+            if (action.payload) {
+               state.listOrder = action.payload
+            }
+         })
+         .addCase(getListOrder.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
          })
