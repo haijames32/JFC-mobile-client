@@ -52,7 +52,7 @@ const orderSlice = createSlice({
    extraReducers: builder => {
       builder
          // getListOrder
-         .addCase(getListOrder.pending, (state, action) => {
+         .addCase(getListOrder.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -63,12 +63,12 @@ const orderSlice = createSlice({
                state.listOrder = action.payload
             }
          })
-         .addCase(getListOrder.rejected, (state, action) => {
+         .addCase(getListOrder.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
          // getOrderDetails
-         .addCase(getOrderDetails.pending, (state, action) => {
+         .addCase(getOrderDetails.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -79,7 +79,7 @@ const orderSlice = createSlice({
                state.itemOfOrder = action.payload
             }
          })
-         .addCase(getOrderDetails.rejected, (state, action) => {
+         .addCase(getOrderDetails.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
