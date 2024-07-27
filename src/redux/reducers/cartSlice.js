@@ -87,7 +87,7 @@ const cartSlice = createSlice({
    reducers: {},
    extraReducers: builder => {
       builder
-         .addCase(getListCart.pending, (state, action) => {
+         .addCase(getListCart.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -98,11 +98,11 @@ const cartSlice = createSlice({
                state.cart = action.payload
             }
          })
-         .addCase(getListCart.rejected, (state, action) => {
+         .addCase(getListCart.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
-         .addCase(addProductToCart.pending, (state, action) => {
+         .addCase(addProductToCart.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -113,11 +113,11 @@ const cartSlice = createSlice({
                state.cart.unshift(action.payload)
             }
          })
-         .addCase(addProductToCart.rejected, (state, action) => {
+         .addCase(addProductToCart.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
-         .addCase(changeQuantity.pending, (state, action) => {
+         .addCase(changeQuantity.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -129,11 +129,11 @@ const cartSlice = createSlice({
                state.cart[index] = action.payload
             }
          })
-         .addCase(changeQuantity.rejected, (state, action) => {
+         .addCase(changeQuantity.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
-         .addCase(deleteProductInCart.pending, (state, action) => {
+         .addCase(deleteProductInCart.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -144,7 +144,7 @@ const cartSlice = createSlice({
                state.cart.filter(cart => cart._id != action.payload._id)
             }
          })
-         .addCase(deleteProductInCart.rejected, (state, action) => {
+         .addCase(deleteProductInCart.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
