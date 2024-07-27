@@ -5,7 +5,7 @@ import { helper } from '../../utils';
 const rootUrl = process.env.LOCALHOST
 
 
-export const getProfileAction = createAsyncThunk('userSlice/getProfileAction', async (id) => {
+export const getProfile = createAsyncThunk('userSlice/getProfile', async (id) => {// Input userId
    const url = `${rootUrl}/user/profile/${id}`
    try {
       const res = await axios.get(url)
@@ -22,7 +22,7 @@ export const getProfileAction = createAsyncThunk('userSlice/getProfileAction', a
    }
 })
 
-export const updateProfileAction = createAsyncThunk('userSlice/updateProfileAction', async (id, body) => {
+export const updateProfile = createAsyncThunk('userSlice/updateProfile', async (id, body) => {// Input userId
    const url = `${rootUrl}/user/editProfile/${id}`
    try {
       const res = await axios.put(url, body)
@@ -39,7 +39,7 @@ export const updateProfileAction = createAsyncThunk('userSlice/updateProfileActi
    }
 })
 
-export const getListAddress = createAsyncThunk('userSlice/getListAddress', async (id) => {
+export const getListAddress = createAsyncThunk('userSlice/getListAddress', async (id) => {// Input userId
    const url = `${rootUrl}/user/address/${id}`
    try {
       const res = await axios.get(url)
@@ -73,7 +73,7 @@ export const postAddress = createAsyncThunk('userSlice/postAddress', async (body
    }
 })
 
-export const setAddressDefault = createAsyncThunk('userSlice/setAddressDefault', async (id, addressId) => {
+export const setAddressDefault = createAsyncThunk('userSlice/setAddressDefault', async (id, addressId) => {// Input userId
    const url = `${rootUrl}/user/setAddressDefault/${id}`
    try {
       const res = await axios.patch(url, addressId)
@@ -90,7 +90,7 @@ export const setAddressDefault = createAsyncThunk('userSlice/setAddressDefault',
    }
 })
 
-export const deleteAddress = createAsyncThunk('userSlice/deleteAddress', async (id) => {
+export const deleteAddress = createAsyncThunk('userSlice/deleteAddress', async (id) => {// Input addressId
    const url = `${rootUrl}/user/deleteAddress/${id}`
    try {
       const res = await axios.delete(url)
@@ -117,7 +117,7 @@ const initialState = {
       email: '',
       dateOfBirth: '',
       gender: '',
-      addressDefault: ''
+      addressDefault: {}
    },
    listAddress: [],
    isLoading: false,
@@ -131,11 +131,12 @@ const userSlice = createSlice({
    reducers: {},
    extraReducers: builder => {
       builder
-         .addCase(getProfileAction.pending, (state, action) => {
+         // getProfile
+         .addCase(getProfile.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
-         .addCase(getProfileAction.fulfilled, (state, action) => {
+         .addCase(getProfile.fulfilled, (state, action) => {
             state.isLoading = false
             state.isError = false
             if (action.payload) {
@@ -148,15 +149,16 @@ const userSlice = createSlice({
                state.user.addressDefault = action.payload.addressDefault
             }
          })
-         .addCase(getProfileAction.rejected, (state, action) => {
+         .addCase(getProfile.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
-         .addCase(updateProfileAction.pending, (state, action) => {
+         // updateProfile
+         .addCase(updateProfile.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
-         .addCase(updateProfileAction.fulfilled, (state, action) => {
+         .addCase(updateProfile.fulfilled, (state, action) => {
             state.isLoading = false
             state.isError = false
             if (action.payload) {
@@ -168,11 +170,12 @@ const userSlice = createSlice({
                state.user.gender = action.payload.gender
             }
          })
-         .addCase(updateProfileAction.rejected, (state, action) => {
+         .addCase(updateProfile.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
-         .addCase(getListAddress.pending, (state, action) => {
+         // getListAddress
+         .addCase(getListAddress.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -183,11 +186,12 @@ const userSlice = createSlice({
                state.listAddress = action.payload
             }
          })
-         .addCase(getListAddress.rejected, (state, action) => {
+         .addCase(getListAddress.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
-         .addCase(postAddress.pending, (state, action) => {
+         // postAddress
+         .addCase(postAddress.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -198,11 +202,12 @@ const userSlice = createSlice({
                state.listAddress.unshift(action.payload)
             }
          })
-         .addCase(postAddress.rejected, (state, action) => {
+         .addCase(postAddress.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
-         .addCase(setAddressDefault.pending, (state, action) => {
+         // setAddressDefault
+         .addCase(setAddressDefault.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -213,11 +218,12 @@ const userSlice = createSlice({
                state.user.addressDefault = action.payload
             }
          })
-         .addCase(setAddressDefault.rejected, (state, action) => {
+         .addCase(setAddressDefault.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
-         .addCase(deleteAddress.pending, (state, action) => {
+         // deleteAddress
+         .addCase(deleteAddress.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -228,7 +234,7 @@ const userSlice = createSlice({
                state.listAddress.filter(address => address._id !== action.payload._id)
             }
          })
-         .addCase(deleteAddress.rejected, (state, action) => {
+         .addCase(deleteAddress.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })
