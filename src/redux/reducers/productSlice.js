@@ -4,6 +4,40 @@ import { helper } from '../../utils'
 
 const rootUrl = process.env.LOCALHOST
 
+export const getListCategory = createAsyncThunk('productSlice/getListCategory', async () => {
+   const url = `${rootUrl}/api/category`
+   try {
+      const res = await axios.get(url)
+      if (res.status == 200) {
+         return res.data.data
+      } else {
+         helper.showMsgError(res.data.message)
+         return false
+      }
+   } catch (error) {
+      helper.showMsgError(error.message)
+      console.log('Error: ', error)
+      return false
+   }
+})
+
+export const getListProductByCate = createAsyncThunk('productSlice/getListProductByCate', async (id) => {//Input categoryId
+   const url = `${rootUrl}/api/productByCategory/${id}`
+   try {
+      const res = await axios.get(url)
+      if (res.status == 200) {
+         return res.data.data
+      } else {
+         helper.showMsgError(res.data.message)
+         return false
+      }
+   } catch (error) {
+      helper.showMsgError(error.message)
+      console.log('Error: ', error)
+      return false
+   }
+})
+
 export const productDetails = createAsyncThunk('productSlice/productDetails', async (id) => {
    const url = `${rootUrl}/api/product/${id}`
    try {
@@ -22,6 +56,8 @@ export const productDetails = createAsyncThunk('productSlice/productDetails', as
 })
 
 const initialState = {
+   listCategory: [],
+   listProduct: [],
    product: {
       id: '',
       name: '',
@@ -40,7 +76,40 @@ const productSlice = createSlice({
    reducers: {},
    extraReducers: builder => {
       builder
-         .addCase(productDetails.pending, (state, action) => {
+         // getListCategory
+         .addCase(getListCategory.pending, (state) => {
+            state.isLoading = true
+            state.isError = false
+         })
+         .addCase(getListCategory.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isError = false
+            if (action.payload) {
+               state.listCategory = action.payload
+            }
+         })
+         .addCase(getListCategory.rejected, (state) => {
+            state.isLoading = false
+            state.isError = true
+         })
+         // getListProductByCate
+         .addCase(getListProductByCate.pending, (state) => {
+            state.isLoading = true
+            state.isError = false
+         })
+         .addCase(getListProductByCate.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isError = false
+            if (action.payload) {
+               state.listProduct = action.payload
+            }
+         })
+         .addCase(getListProductByCate.rejected, (state) => {
+            state.isLoading = false
+            state.isError = true
+         })
+         // productDetails
+         .addCase(productDetails.pending, (state) => {
             state.isLoading = true
             state.isError = false
          })
@@ -51,7 +120,7 @@ const productSlice = createSlice({
                state.product = action.payload
             }
          })
-         .addCase(productDetails.rejected, (state, action) => {
+         .addCase(productDetails.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })

@@ -39,28 +39,10 @@ export const getListProductByCate = createAsyncThunk('homeSlice/getListProductBy
    }
 })
 
-export const getListOrder = createAsyncThunk('homeSlice/getListOrder', async (id) => {//Input userId
-   const url = `${rootUrl}/api/user/order/${id}`
-   try {
-      const res = await axios.get(url)
-      if (res.status == 200) {
-         return res.data.data
-      } else {
-         helper.showMsgError(error.message)
-         return false
-      }
-   } catch (error) {
-      helper.showMsgError(error.message)
-      console.log('Error: ', error)
-      return false
-   }
-})
-
 
 const initialState = {
    listCategory: [],
    listProduct: [],
-   listOrder: [],
    isLoading: false,
    isError: false
 }
@@ -100,22 +82,6 @@ const homeSlice = createSlice({
             }
          })
          .addCase(getListProductByCate.rejected, (state, action) => {
-            state.isLoading = false
-            state.isError = true
-         })
-         // getListOrder
-         .addCase(getListOrder.pending, (state, action) => {
-            state.isLoading = true
-            state.isError = false
-         })
-         .addCase(getListOrder.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.isError = false
-            if (action.payload) {
-               state.listOrder = action.payload
-            }
-         })
-         .addCase(getListOrder.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
          })
