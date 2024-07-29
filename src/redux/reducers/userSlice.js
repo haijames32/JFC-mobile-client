@@ -128,7 +128,13 @@ const initialState = {
 const userSlice = createSlice({
    name: 'user',
    initialState,
-   reducers: {},
+   reducers: {
+      setInfoUser: (state, action) => {
+         if (action.payload) {
+            state.user = action.payload
+         }
+      }
+   },
    extraReducers: builder => {
       builder
          // getProfile
@@ -241,5 +247,5 @@ const userSlice = createSlice({
    }
 })
 
-// export const { increment, decrement } = userSlice.actions
+export const { setInfoUser } = userSlice.actions
 export default userSlice.reducer
