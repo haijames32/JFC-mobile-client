@@ -3,18 +3,18 @@ import { WINDOW_HEIGHT, WINDOW_WIDTH, myColors, myFonts } from "../utils"
 import { Icon, Icons } from "./index"
 import { useNavigation } from "@react-navigation/native"
 
-const Header = ({ title, isHideCart }) => {
+const Header = ({
+   title = '',
+   isIconCart = false
+}) => {
    const navigation = useNavigation()
    return (
       <View style={styles.container}>
          <Icon type={Icons.Ionicons} name='arrow-back-circle' size={30} color='#fff' onPress={() => navigation.goBack()} />
          <Text style={styles.title}>{title}</Text>
-         {isHideCart ? (
+         {isIconCart &&
             <Icon type={Icons.Ionicons} name='cart' size={30} color='#fff' />
-         ) : (
-            null
-         )}
-
+         }
       </View>
    )
 }
@@ -23,7 +23,8 @@ export default Header
 
 const styles = StyleSheet.create({
    container: {
-      height: WINDOW_HEIGHT * 0.1,
+      width: WINDOW_WIDTH,
+      height: WINDOW_HEIGHT * 0.11,
       backgroundColor: myColors.primary,
       paddingHorizontal: 15,
       flexDirection: 'row',
