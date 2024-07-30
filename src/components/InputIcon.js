@@ -1,9 +1,8 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
-import { myFonts, WINDOW_WIDTH } from "../../../utils"
-import { Icon, Icons } from "../../../components"
+import { myFonts, WINDOW_WIDTH, myColors } from "../utils"
 
 
-const PassInput = ({
+const InputIcon = ({
    width = WINDOW_WIDTH * 0.8,
    height = 55,
    isTrim = false,
@@ -30,7 +29,7 @@ const PassInput = ({
    )
 }
 
-export default PassInput
+export default InputIcon
 
 const styles = StyleSheet.create({
    container: {

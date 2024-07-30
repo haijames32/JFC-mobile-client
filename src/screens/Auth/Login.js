@@ -8,6 +8,9 @@ import { useNavigation } from '@react-navigation/native'
 
 const Login = () => {
    const navigation = useNavigation()
+   const nextScreenRegister = () => {
+      navigation.navigate('Register')
+   }
    const handleLogin = () => {
 
    }
@@ -42,7 +45,7 @@ const Login = () => {
                      { color: myColors.textBlack }
                   ]}>Tạo tài khoản mới?</Text>
                <TouchableOpacity
-                  onPress={() => navigation.navigate('Register')}>
+                  onPress={nextScreenRegister}>
                   <Text
                      style={[
                         styles.fontLexend,
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
    containerBottom: {
       height: WINDOW_HEIGHT * 0.5,
       width: WINDOW_WIDTH,
-      backgroundColor: myColors.background,
+      backgroundColor: myColors.primary2,
       alignItems: 'center'
    },
    btn: {
