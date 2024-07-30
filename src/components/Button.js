@@ -2,7 +2,7 @@ import React, { StyleSheet, Text, TouchableOpacity } from "react-native"
 import { myColors, WINDOW_HEIGHT, WINDOW_WIDTH } from "../utils"
 
 const Button = ({
-   text,
+   title = '',
    onPress,
    ...props
 }) => {
@@ -14,7 +14,7 @@ const Button = ({
             props.style,
          ]}
          onPress={onPress}>
-         <Text style={[styles.title]}>{text}</Text>
+         <Text style={[styles.title]}>{title}</Text>
       </TouchableOpacity>
    )
 }
@@ -24,7 +24,7 @@ export default Button
 const styles = StyleSheet.create({
    container: {
       width: WINDOW_WIDTH * 0.5,
-      height: 45,
+      height: 55,
       borderRadius: 7,
       backgroundColor: myColors.primary,
       justifyContent: 'center',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
    },
    title: {
       fontWeight: 'bold',
-      fontSize: 16,
+      fontSize: 17,
       color: 'white'
    }
 })

@@ -3,7 +3,10 @@ import { WINDOW_HEIGHT, WINDOW_WIDTH, myColors, myFonts } from "../utils"
 import { Icon, Icons } from "./index"
 import { useNavigation } from "@react-navigation/native"
 
-const Header = ({ title, isIconCart }) => {
+const Header = ({
+   title = '',
+   isIconCart = false
+}) => {
    const navigation = useNavigation()
    return (
       <View style={styles.container}>
@@ -20,7 +23,8 @@ export default Header
 
 const styles = StyleSheet.create({
    container: {
-      height: WINDOW_HEIGHT * 0.1,
+      width: WINDOW_WIDTH,
+      height: WINDOW_HEIGHT * 0.11,
       backgroundColor: myColors.primary,
       paddingHorizontal: 15,
       flexDirection: 'row',

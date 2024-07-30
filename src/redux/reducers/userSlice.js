@@ -6,7 +6,7 @@ const rootUrl = process.env.LOCALHOST
 
 
 export const getProfile = createAsyncThunk('userSlice/getProfile', async (id) => {// Input userId
-   const url = `${rootUrl}/user/profile/${id}`
+   const url = `${rootUrl}/api/user/profile/${id}`
    try {
       const res = await axios.get(url)
       if (res.status == 200) {
@@ -23,7 +23,7 @@ export const getProfile = createAsyncThunk('userSlice/getProfile', async (id) =>
 })
 
 export const updateProfile = createAsyncThunk('userSlice/updateProfile', async (id, body) => {// Input userId
-   const url = `${rootUrl}/user/editProfile/${id}`
+   const url = `${rootUrl}/api/user/editProfile/${id}`
    try {
       const res = await axios.put(url, body)
       if (res.status == 200) {
@@ -40,7 +40,7 @@ export const updateProfile = createAsyncThunk('userSlice/updateProfile', async (
 })
 
 export const getListAddress = createAsyncThunk('userSlice/getListAddress', async (id) => {// Input userId
-   const url = `${rootUrl}/user/address/${id}`
+   const url = `${rootUrl}/api/user/address/${id}`
    try {
       const res = await axios.get(url)
       if (res.status == 200) {
@@ -57,7 +57,7 @@ export const getListAddress = createAsyncThunk('userSlice/getListAddress', async
 })
 
 export const postAddress = createAsyncThunk('userSlice/postAddress', async (body) => {
-   const url = `${rootUrl}/user/address`
+   const url = `${rootUrl}/api/user/address`
    try {
       const res = await axios.post(url, body)
       if (res.status == 200) {
@@ -73,10 +73,27 @@ export const postAddress = createAsyncThunk('userSlice/postAddress', async (body
    }
 })
 
-export const setAddressDefault = createAsyncThunk('userSlice/setAddressDefault', async (id, addressId) => {// Input userId
-   const url = `${rootUrl}/user/setAddressDefault/${id}`
+export const setAddressDefault = createAsyncThunk('userSlice/setAddressDefault', async (id, body) => {// Input userId, addressId
+   const url = `${rootUrl}/api/user/setAddressDefault/${id}`
    try {
-      const res = await axios.patch(url, addressId)
+      const res = await axios.patch(url, body)
+      if (res.status == 200) {
+         return res.data.data
+      } else {
+         helper.showMsgError(res.data.message)
+         return false
+      }
+   } catch (error) {
+      helper.showMsgError(error.message)
+      console.log('Error: ', error)
+      return false
+   }
+})
+
+export const changeAddress = createAsyncThunk('userSlice/changeAddress', async (id, body) => {// Input addressId
+   const url = `${rootUrl}/api/user/changeAddress/${id}`
+   try {
+      const res = await axios.put(url, body)
       if (res.status == 200) {
          return res.data.data
       } else {
@@ -91,7 +108,7 @@ export const setAddressDefault = createAsyncThunk('userSlice/setAddressDefault',
 })
 
 export const deleteAddress = createAsyncThunk('userSlice/deleteAddress', async (id) => {// Input addressId
-   const url = `${rootUrl}/user/deleteAddress/${id}`
+   const url = `${rootUrl}/api/user/deleteAddress/${id}`
    try {
       const res = await axios.delete(url)
       if (res.status == 200) {
@@ -225,6 +242,23 @@ const userSlice = createSlice({
             }
          })
          .addCase(setAddressDefault.rejected, (state) => {
+            state.isLoading = false
+            state.isError = true
+         })
+         // changeAddress
+         .addCase(changeAddress.pending, (state) => {
+            state.isLoading = true
+            state.isError = false
+         })
+         .addCase(changeAddress.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isError = false
+            if (action.payload) {
+               const index = state.listAddress.findIndex(address => address._id == action.payload._id)
+               state.listAddress[index] = action.payload
+            }
+         })
+         .addCase(changeAddress.rejected, (state) => {
             state.isLoading = false
             state.isError = true
          })

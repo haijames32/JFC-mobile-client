@@ -39,7 +39,7 @@ export const Icons = {
 
 const Icon = ({
    type,
-   name,
+   name = '',
    size = 30,
    color,
    onPress,
