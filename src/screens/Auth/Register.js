@@ -1,14 +1,16 @@
 import logo from '../../assets/images/logo-app.png'
 import { Image, StyleSheet, Text, View } from "react-native"
-import { myColors, myFonts } from "../../utils"
+import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
 import { Button, Icon, Icons, Input } from '../../components'
 import PassInput from './components/PassInput'
 import { Dropdown } from 'react-native-element-dropdown'
 import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import FastImage from 'react-native-fast-image'
 
 const Register = () => {
+   const navigation = useNavigation()
    const [value, setValue] = useState('None')
-   const [isFocus, setIsFocus] = useState(false)
 
    const gender = [
       { label: 'Giới tính', value: 'None' },
@@ -16,6 +18,9 @@ const Register = () => {
       { label: 'Nữ', value: 'Female' },
    ]
 
+   const handleRegister = () => {
+
+   }
 
    return (
       <View style={styles.container}>
@@ -64,7 +69,6 @@ const Register = () => {
                placeholder="Gender"
                searchPlaceholder="Search..."
                value={value}
-               onFocus={() => setIsFocus(true)}
                onChange={item => {
                   setValue(item.value);
                }}
@@ -72,7 +76,16 @@ const Register = () => {
          </View>
 
          <View style={styles.containerBtn}>
-
+            <Button
+               onPress={() => navigation.goBack()}
+               style={styles.btn}
+               title='Đăng nhập'
+               textColor={myColors.textBlack} />
+            <Button
+               onPress={handleRegister}
+               style={styles.btn}
+               title='Đăng kí'
+               textColor={myColors.textBlack} />
          </View>
 
       </View>
@@ -92,8 +105,8 @@ const styles = StyleSheet.create({
       fontSize: 16
    },
    logo: {
-      width: 100,
-      height: 100,
+      width: 80,
+      height: 80,
       marginBottom: 5
    },
    title: {
@@ -110,8 +123,15 @@ const styles = StyleSheet.create({
 
    },
    containerBtn: {
+      width: WINDOW_WIDTH * 0.8,
       flexDirection: 'row',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
+      marginTop: 20
+   },
+   btn: {
+      backgroundColor: myColors.primary2,
+      color: myColors.textBlack,
+      width: WINDOW_WIDTH * 0.35
    },
    //Dropdown
    dropdown: {
