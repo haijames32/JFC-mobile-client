@@ -1,11 +1,11 @@
 import logo from '../../assets/images/logo-app.png'
-import { Image, StyleSheet, Text, View } from "react-native"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { myColors, myFonts } from '../../utils'
 import { Icon, Icons, ItemOption } from '../../components'
 import { useNavigation } from '@react-navigation/native'
 
 
-const Option = () => {
+const Options = () => {
    const navigation = useNavigation()
 
 
@@ -23,13 +23,16 @@ const Option = () => {
                   source={logo} />
             </View>
             <Text style={styles.nameUser}>Hải James</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <TouchableOpacity
+               style={styles.boxEdit}
+               onPress={() => navigation.navigate('EditProfile')}>
                <Text style={styles.fontLexend}>Chỉnh sửa tài khoản</Text>
                <Icon
+                  style={{ marginLeft: 3 }}
                   name='arrow-forward-circle'
                   size={20}
                   color={myColors.textWhile} />
-            </View>
+            </TouchableOpacity>
          </View>
 
          <View style={styles.containerItem}>
@@ -57,7 +60,7 @@ const Option = () => {
    )
 }
 
-export default Option
+export default Options
 
 const styles = StyleSheet.create({
    container: {
@@ -96,6 +99,11 @@ const styles = StyleSheet.create({
       fontFamily: myFonts.bold,
       fontSize: 25,
       color: myColors.textWhile
+   },
+   boxEdit: {
+      marginTop: 5,
+      flexDirection: 'row',
+      paddingHorizontal: 3,
    },
    containerItem: {
       marginTop: 30

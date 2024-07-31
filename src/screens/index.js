@@ -2,7 +2,7 @@ import Login from './Auth/Login'
 import Register from './Auth/Register'
 import Cart from './Cart/Cart'
 import Category from './Category/Category'
-import DetailsCategory from './Category/DetailsCategory'
+import CategoryDetails from './Category/CategoryDetails'
 import Home from './Home/Home'
 import EditProfile from './Options/EditProfile'
 import Profile from './Options/Profile'
@@ -15,14 +15,15 @@ import Splash from './Splash/Splash'
 import Order from './Order/Order'
 import OrderDetails from './Order/OrderDetails'
 import CreateOrder from './Order/CreateOrder'
-import Option from './Options/Option'
+import Options from './Options/Options'
 import Settings from './Settings/Settings'
+import Address from './Options/Address'
 
 
 export {
    Login,
    Category,
-   DetailsCategory,
+   CategoryDetails,
    EditProfile,
    Profile,
    Register,
@@ -37,6 +38,7 @@ export {
    CreateOrder,
    Order,
    OrderDetails,
-   Option,
+   Options,
    Settings,
+   Address,
 }

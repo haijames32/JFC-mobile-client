@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native"
 
-const Category = () => {
+const CategoryDetails = () => {
    return (
       <View>
 
@@ -8,7 +8,7 @@ const Category = () => {
    )
 }
 
-export default Category
+export default CategoryDetails
 
 const styles = StyleSheet.create({
 

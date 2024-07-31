@@ -1,4 +1,4 @@
-import { View } from "react-native"
+import { StyleSheet, View } from "react-native"
 
 const Cart = () => {
    return (
@@ -9,3 +9,7 @@ const Cart = () => {
 }
 
 export default Cart
+
+const styles = StyleSheet.create({
+
+})
