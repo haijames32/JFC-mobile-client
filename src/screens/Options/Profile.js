@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native"
 
-const Category = () => {
+const Profile = () => {
    return (
       <View>
 
@@ -8,7 +8,7 @@ const Category = () => {
    )
 }
 
-export default Category
+export default Profile
 
 const styles = StyleSheet.create({
 

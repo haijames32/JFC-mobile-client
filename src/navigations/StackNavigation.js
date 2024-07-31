@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
    Login,
    Category,
-   DetailsCategory,
+   CategoryDetails,
    EditProfile,
    Profile,
    Register,
@@ -18,6 +18,9 @@ import {
    CreateOrder,
    Order,
    OrderDetails,
+   Options,
+   Settings,
+   Address,
 } from '../screens/index'
 
 const Stack = createNativeStackNavigator();
@@ -25,12 +28,12 @@ const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
    return (
       <NavigationContainer>
-         <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
+         <Stack.Navigator initialRouteName='Options' screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Category" component={Category} />
-            <Stack.Screen name="DetailsCategory" component={DetailsCategory} />
+            <Stack.Screen name="CategoryDetails" component={CategoryDetails} />
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="EditProfile" component={EditProfile} />
             <Stack.Screen name="Cart" component={Cart} />
@@ -40,6 +43,9 @@ const StackNavigation = () => {
             <Stack.Screen name="Order" component={Order} />
             <Stack.Screen name="OrderDetails" component={OrderDetails} />
             <Stack.Screen name="CreateOrder" component={CreateOrder} />
+            <Stack.Screen name="Options" component={Options} />
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="Address" component={Address} />
             <Stack.Group
                screenOptions={{
                   presentation: 'transparentModal',

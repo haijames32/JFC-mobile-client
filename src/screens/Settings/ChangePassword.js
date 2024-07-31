@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native"
 
-const Category = () => {
+const ChangePassword = () => {
    return (
       <View>
 
@@ -8,7 +8,7 @@ const Category = () => {
    )
 }
 
-export default Category
+export default ChangePassword
 
 const styles = StyleSheet.create({
 
