@@ -10,7 +10,7 @@ import Message from './Modals/Message'
 import Confirm from './Modals/Confirm'
 import Loading from './Modals/Loading'
 import ProductDetails from './Product/ProductDetails'
-import ChangePasword from './Settings/ChangePassword'
+import ChangePassword from './Settings/ChangePassword'
 import Splash from './Splash/Splash'
 import Order from './Order/Order'
 import OrderDetails from './Order/OrderDetails'
@@ -33,7 +33,7 @@ export {
    Loading,
    Message,
    ProductDetails,
-   ChangePasword,
+   ChangePassword,
    Splash,
    CreateOrder,
    Order,

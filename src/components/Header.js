@@ -12,9 +12,11 @@ const Header = ({
       <View style={styles.container}>
          <Icon type={Icons.Ionicons} name='arrow-back-circle' size={30} color='#fff' onPress={() => navigation.goBack()} />
          <Text style={styles.title}>{title}</Text>
-         {isIconCart &&
+         {isIconCart ? (
             <Icon type={Icons.Ionicons} name='cart' size={30} color='#fff' />
-         }
+         ) : (
+            <View style={{ width: 26 }}></View>
+         )}
       </View>
    )
 }

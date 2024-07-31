@@ -42,7 +42,7 @@ const Icon = ({
    type = Icons.Ionicons,
    name = '',
    size = 30,
-   color = myColors.blackHint,
+   color = myColors.textBlackHint,
    ...props
 }) => {
    const Tag = type

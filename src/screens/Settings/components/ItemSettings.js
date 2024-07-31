@@ -1,23 +1,16 @@
 import { StyleSheet, TouchableOpacity, Text } from "react-native"
-import { myColors, myFonts, WINDOW_WIDTH } from "../utils"
-import { Icon, Icons } from "./index"
+import { myColors, myFonts, WINDOW_WIDTH } from "../../../utils/index"
+import { Icon } from "../../../components/index"
 
-const ItemOption = ({
+const ItemSettings = ({
    title = '',
    onPress,
-   iconType = Icons.Ionicons,
-   iconName = '',
    ...props }) => {
    return (
       <TouchableOpacity
          {...props}
          onPress={onPress}
          style={styles.container}>
-         <Icon
-            type={iconType}
-            name={iconName}
-            color={myColors.primary}
-            size={20} />
          <Text style={styles.title}>{title}</Text>
          <Icon
             name="chevron-forward-outline"
@@ -26,7 +19,7 @@ const ItemOption = ({
    )
 }
 
-export default ItemOption
+export default ItemSettings
 
 const styles = StyleSheet.create({
    container: {
@@ -35,7 +28,7 @@ const styles = StyleSheet.create({
       backgroundColor: myColors.textWhile,
       alignItems: "center",
       flexDirection: "row",
-      paddingHorizontal: 25,
+      paddingHorizontal: 10,
       borderBottomWidth: 0.3,
       borderBottomColor: myColors.textBlackHint
    },
@@ -43,7 +36,7 @@ const styles = StyleSheet.create({
       fontFamily: myFonts.medium,
       fontSize: 16,
       color: myColors.textBlackHint,
-      paddingHorizontal: 25,
-      width: WINDOW_WIDTH * 0.8
+      paddingHorizontal: 20,
+      width: WINDOW_WIDTH * 0.88
    },
 })
