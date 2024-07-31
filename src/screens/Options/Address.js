@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native"
 
-const Settings = () => {
+const Address = () => {
    return (
       <View>
 
@@ -8,7 +8,7 @@ const Settings = () => {
    )
 }
 
-export default Settings
+export default Address
 
 const styles = StyleSheet.create({
 

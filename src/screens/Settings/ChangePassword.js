@@ -1,8 +1,15 @@
+import { StyleSheet, View } from "react-native"
 
-const ChangePasword = () => {
+const ChangePassword = () => {
    return (
-      <></>
+      <View>
+
+      </View>
    )
 }
 
-export default ChangePasword
+export default ChangePassword
+
+const styles = StyleSheet.create({
+
+})

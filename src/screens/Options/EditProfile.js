@@ -1,4 +1,4 @@
-import { View } from "react-native"
+import { StyleSheet, View } from "react-native"
 
 const EditProfile = () => {
    return (
@@ -9,3 +9,7 @@ const EditProfile = () => {
 }
 
 export default EditProfile
+
+const styles = StyleSheet.create({
+
+})
