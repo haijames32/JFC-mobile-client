@@ -4,6 +4,7 @@ import { myColors, WINDOW_HEIGHT, WINDOW_WIDTH } from "../utils"
 const Button = ({
    title = '',
    onPress,
+   textColor = myColors.textWhile,
    ...props
 }) => {
    return (
@@ -14,7 +15,7 @@ const Button = ({
             props.style,
          ]}
          onPress={onPress}>
-         <Text style={[styles.title]}>{title}</Text>
+         <Text style={[styles.title, { color: textColor }]}>{title}</Text>
       </TouchableOpacity>
    )
 }
