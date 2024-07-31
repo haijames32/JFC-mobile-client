@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       fontSize: 16,
       fontFamily: myFonts.medium,
+      color: myColors.textBlack
       // shadowColor: '#000',
       // shadowOffset: {
       //    width: 0,

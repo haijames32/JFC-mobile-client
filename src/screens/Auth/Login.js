@@ -12,7 +12,7 @@ const Login = () => {
       navigation.navigate('Register')
    }
    const handleLogin = () => {
-
+      navigation.navigate('Home')
    }
    return (
       <View style={styles.container}>

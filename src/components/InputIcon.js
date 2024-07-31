@@ -1,30 +1,34 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
 import { myFonts, WINDOW_WIDTH, myColors } from "../utils"
 
-
+import { Icon } from '../components/index'
 const InputIcon = ({
    width = WINDOW_WIDTH * 0.8,
    height = 55,
    isTrim = false,
-   isRightIcon = false,
+   iconType,
+   iconName = '',
    placeholder = '',
+   onPressIcon,
    ...props
 }) => {
    return (
       <View style={[styles.container, { width: width, height: height }]}>
          <TextInput
             {...props}
+            value={props.value}
             style={[styles.input, props.style]}
             onChangeText={value => props.onChangeText && props.onChangeText(isTrim ? value.trim() : value)}
+            placeholderTextColor={myColors.textHint}
             placeholder={placeholder} />
-         {isRightIcon &&
-            <TouchableOpacity
-               style={styles.rightIcon}>
-               <Icon type={Icons.Ionicons}
-                  name={'eye-off-outline'}
-                  size={20} />
-            </TouchableOpacity>
-         }
+         <TouchableOpacity
+            onPress={onPressIcon}
+            style={styles.rightIcon}>
+            <Icon type={iconType}
+               name={iconName}
+               size={20}
+               color={myColors.textHint} />
+         </TouchableOpacity>
       </View>
    )
 }
@@ -46,6 +50,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       fontSize: 16,
       fontFamily: myFonts.medium,
+      color: myColors.textBlack
    },
    rightIcon: {
       height: '100%',

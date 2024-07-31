@@ -1,5 +1,5 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
-import { myFonts, WINDOW_WIDTH } from "../../../utils"
+import { myColors, myFonts, WINDOW_WIDTH } from "../../../utils"
 import { Icon, Icons } from "../../../components"
 
 
@@ -17,13 +17,15 @@ const PassInput = ({
             {...props}
             style={[styles.input, props.style]}
             onChangeText={value => props.onChangeText && props.onChangeText(isTrim ? value.trim() : value)}
+            placeholderTextColor={myColors.textHint}
             placeholder={placeholder} />
          {isRightIcon &&
             <TouchableOpacity
                style={styles.rightIcon}>
                <Icon type={Icons.Ionicons}
-                  name={'eye-off-outline'}
-                  size={20} />
+                  name={'eye-off'}
+                  size={20}
+                  color={myColors.textHint} />
             </TouchableOpacity>
          }
       </View>
@@ -47,6 +49,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       fontSize: 16,
       fontFamily: myFonts.medium,
+      color: myColors.textBlack
    },
    rightIcon: {
       height: '100%',

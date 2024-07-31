@@ -1,25 +1,38 @@
 import logo from '../../assets/images/logo-app.png'
 import { Image, StyleSheet, Text, View } from "react-native"
-import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
-import { Button, Icon, Icons, Input } from '../../components'
-import PassInput from './components/PassInput'
-import { Dropdown } from 'react-native-element-dropdown'
 import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import FastImage from 'react-native-fast-image'
+import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
+import { Button, DatePicker, Icon, Icons, Input, InputIcon } from '../../components'
+import PassInput from './components/PassInput'
 
 const Register = () => {
    const navigation = useNavigation()
-   const [value, setValue] = useState('None')
+   const [date, setDate] = useState('')
+   const [txt, setTxt] = useState('')
+   const [open, setOpen] = useState(false)
+   // const [value, setValue] = useState('None')
 
-   const gender = [
-      { label: 'Giới tính', value: 'None' },
-      { label: 'Nam', value: 'Male' },
-      { label: 'Nữ', value: 'Female' },
-   ]
+   // const gender = [
+   //    { label: 'Gender', value: 'None' },
+   //    { label: 'Nam', value: 'Male' },
+   //    { label: 'Nữ', value: 'Female' },
+   // ]
+
+   // const onChangeValue = (newValue) => {
+   //    setValue(newValue)
+   // }
+
+   const onSetDate = (newState) => {
+      setDate(newState)
+   }
+
+   const onSetOpen = (newState) => {
+      setOpen(newState)
+   }
 
    const handleRegister = () => {
-
+      console.log('Register');
    }
 
    return (
@@ -56,23 +69,27 @@ const Register = () => {
                isTrim
                isRightIcon />
 
-            <Dropdown
-               style={styles.dropdown}
-               placeholderStyle={styles.placeholderStyle}
-               selectedTextStyle={styles.selectedTextStyle}
-               inputSearchStyle={styles.inputSearchStyle}
-               iconStyle={styles.iconStyle}
-               data={gender}
-               maxHeight={200}
-               labelField="label"
-               valueField="value"
-               placeholder="Gender"
-               searchPlaceholder="Search..."
-               value={value}
-               onChange={item => {
-                  setValue(item.value);
-               }}
+            <InputIcon
+               placeholder='BirthDay'
+               isTrim
+               iconType={Icons.MaterialIcons}
+               iconName='date-range'
+               onPressIcon={() => setOpen(true)}
+               value={date}
             />
+            <DatePicker
+               open={open}
+               setDate={onSetDate}
+               setOpen={onSetOpen} />
+
+
+
+            {/* <InputDropdown
+               data={gender}
+               value={value}
+               onChangeValue={onChangeValue} /> */}
+
+
          </View>
 
          <View style={styles.containerBtn}>
