@@ -11,6 +11,7 @@ const ItemOption = ({
    return (
       <TouchableOpacity
          {...props}
+         activeOpacity={0.5}
          onPress={onPress}
          style={styles.container}>
          <Icon

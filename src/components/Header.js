@@ -3,19 +3,29 @@ import { WINDOW_HEIGHT, WINDOW_WIDTH, myColors, myFonts } from "../utils"
 import { Icon, Icons } from "./index"
 import { useNavigation } from "@react-navigation/native"
 
-const Header = ({
-   title = '',
-   isIconCart = false
-}) => {
+const Header = ({ title = '', isIconCart = false }) => {
    const navigation = useNavigation()
    return (
       <View style={styles.container}>
-         <Icon type={Icons.Ionicons} name='arrow-back-circle' size={30} color='#fff' onPress={() => navigation.goBack()} />
+         <Icon
+            type={Icons.Ionicons}
+            name='arrow-back-circle'
+            size={30} color='#fff'
+            onPress={() => navigation.goBack()} />
          <Text style={styles.title}>{title}</Text>
          {isIconCart ? (
-            <Icon type={Icons.Ionicons} name='cart' size={30} color='#fff' />
+            <View>
+               <Icon
+                  type={Icons.Ionicons}
+                  name='cart' size={30}
+                  color='#fff'
+                  onPress={() => navigation.navigate('Cart')} />
+               <View style={styles.numberCart}>
+                  <Text style={styles.txtNumber}>2</Text>
+               </View>
+            </View>
          ) : (
-            <View style={{ width: 26 }}></View>
+            <View style={{ width: 30 }}></View>
          )}
       </View>
    )
@@ -45,5 +55,21 @@ const styles = StyleSheet.create({
       fontSize: 18,
       color: '#fff',
       fontFamily: myFonts.bold
-   }
+   },
+   numberCart: {
+      position: 'absolute',
+      top: -8,
+      right: -8,
+      height: 20,
+      width: 20,
+      borderRadius: 1000,
+      backgroundColor: myColors.primary2,
+      alignItems: 'center',
+      justifyContent: 'center'
+   },
+   txtNumber: {
+      fontFamily: myFonts.medium,
+      fontSize: 14,
+      color: myColors.textBlack
+   },
 })

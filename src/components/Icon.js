@@ -48,7 +48,8 @@ const Icon = ({
    const Tag = type
    return (
       <TouchableOpacity
-         {...props}>
+         {...props}
+         activeOpacity={0.5}>
          <Tag name={name} size={size} color={color} />
       </TouchableOpacity>
    )
