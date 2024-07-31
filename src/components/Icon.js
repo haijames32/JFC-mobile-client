@@ -16,6 +16,7 @@ import RNIMigration from 'react-native-vector-icons/RNIMigration'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Zocial from 'react-native-vector-icons/Zocial'
 import { TouchableOpacity, Pressable } from 'react-native'
+import { myColors } from '../utils'
 
 export const Icons = {
    AntDesign,
@@ -38,21 +39,18 @@ export const Icons = {
 }
 
 const Icon = ({
-   type,
+   type = Icons.Ionicons,
    name = '',
    size = 30,
-   color,
-   onPress,
+   color = myColors.blackHint,
    ...props
 }) => {
    const Tag = type
    return (
-      <Pressable
-         {...props}
-         style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
-         onPress={onPress}>
+      <TouchableOpacity
+         {...props}>
          <Tag name={name} size={size} color={color} />
-      </Pressable>
+      </TouchableOpacity>
    )
 }
 

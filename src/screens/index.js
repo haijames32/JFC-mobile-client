@@ -4,17 +4,19 @@ import Cart from './Cart/Cart'
 import Category from './Category/Category'
 import DetailsCategory from './Category/DetailsCategory'
 import Home from './Home/Home'
-import EditProfile from './Profile/EditProfile'
-import Profile from './Profile/Profile'
+import EditProfile from './Options/EditProfile'
+import Profile from './Options/Profile'
 import Message from './Modals/Message'
 import Confirm from './Modals/Confirm'
 import Loading from './Modals/Loading'
 import ProductDetails from './Product/ProductDetails'
-import ChangePasword from './Profile/ChangePassword'
+import ChangePasword from './Settings/ChangePassword'
 import Splash from './Splash/Splash'
 import Order from './Order/Order'
 import OrderDetails from './Order/OrderDetails'
 import CreateOrder from './Order/CreateOrder'
+import Option from './Options/Option'
+import Settings from './Settings/Settings'
 
 
 export {
@@ -34,5 +36,7 @@ export {
    Splash,
    CreateOrder,
    Order,
-   OrderDetails
+   OrderDetails,
+   Option,
+   Settings,
 }

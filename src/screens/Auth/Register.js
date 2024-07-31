@@ -9,7 +9,6 @@ import PassInput from './components/PassInput'
 const Register = () => {
    const navigation = useNavigation()
    const [date, setDate] = useState('')
-   const [txt, setTxt] = useState('')
    const [open, setOpen] = useState(false)
    // const [value, setValue] = useState('None')
 

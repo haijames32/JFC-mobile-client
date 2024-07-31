@@ -5,6 +5,7 @@ export const myColors = {
    textWhile: '#fff',
    textBlack: '#000',
    textHint: '#74747494',
+   blackHint: '#383838',
 }
 
 // export const myColors = myTheme.colors
