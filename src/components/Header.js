@@ -10,15 +10,17 @@ const Header = ({ title = '', isIconCart = false }) => {
          <Icon
             type={Icons.Ionicons}
             name='arrow-back-circle'
-            size={30} color='#fff'
+            size={30}
+            color={myColors.textWhile}
             onPress={() => navigation.goBack()} />
          <Text style={styles.title}>{title}</Text>
          {isIconCart ? (
             <View>
                <Icon
                   type={Icons.Ionicons}
-                  name='cart' size={30}
-                  color='#fff'
+                  name='cart'
+                  size={30}
+                  color={myColors.textWhile}
                   onPress={() => navigation.navigate('Cart')} />
                <View style={styles.numberCart}>
                   <Text style={styles.txtNumber}>2</Text>
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
    },
    numberCart: {
       position: 'absolute',
-      top: -8,
-      right: -8,
+      top: -10,
+      right: -10,
       height: 20,
       width: 20,
       borderRadius: 1000,

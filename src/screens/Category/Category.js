@@ -4,9 +4,10 @@ import { Header } from "../../components"
 import { FlashList } from "@shopify/flash-list"
 import FastImage from "react-native-fast-image"
 import CategoryItem from "./components/CategoryItem"
+import { useNavigation } from "@react-navigation/native"
 
 const Category = () => {
-
+   const navigation = useNavigation()
    const data = [
       { id: 1, name: 'Gà giòn', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
       { id: 2, name: 'Gà giòn', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
@@ -32,23 +33,15 @@ const Category = () => {
             estimatedItemSize={WINDOW_WIDTH / 2}
             numColumns={2}
             keyExtractor={item => item.id}
-            contentContainerStyle={{ paddingTop: 5, paddingBottom: 20 }}
+            contentContainerStyle={{ paddingBottom: 8 }}
             renderItem={({ item }) => (
                <CategoryItem
                   name={item.name}
                   image={item.image}
                   onPress={() => {
-                     console.log(item.id);
+                     navigation.navigate('CategoryDetails', { name: item.name })
                   }} />
             )}
-            ListFooterComponent={() => {
-               return (
-                  <View style={{ width: WINDOW_WIDTH, alignItems: 'center', marginTop: 10 }}>
-                     <Text style={styles.txtFooter}>Hết rồi</Text>
-                  </View>
-
-               )
-            }}
          />
       </View>
 

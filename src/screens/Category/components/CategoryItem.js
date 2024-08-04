@@ -22,19 +22,17 @@ export default CategoryItem
 const styles = StyleSheet.create({
    container: {
       backgroundColor: myColors.primary2,
-      height: 195,
-      width: WINDOW_WIDTH / 2 - 10,
-      borderRadius: 10,
-      backgroundColor: 'red',
+      height: 190,
+      width: WINDOW_WIDTH / 2 - 8,
+      borderRadius: 13,
       alignItems: 'center',
       justifyContent: 'center',
-      marginStart: 5,
+      marginHorizontal: 4,
       marginTop: 8
    },
    img: {
-      height: 120,
-      width: 150,
-      backgroundColor: '#fff',
+      height: 130,
+      width: 170,
       borderRadius: 15
    },
    title: {
