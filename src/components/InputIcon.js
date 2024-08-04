@@ -22,6 +22,7 @@ const InputIcon = ({
             placeholderTextColor={myColors.textHint}
             placeholder={placeholder} />
          <TouchableOpacity
+            activeOpacity={0.5}
             onPress={onPressIcon}
             style={styles.rightIcon}>
             <Icon type={iconType}
