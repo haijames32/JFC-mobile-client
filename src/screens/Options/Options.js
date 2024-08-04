@@ -15,7 +15,9 @@ const Options = () => {
          <Icon
             style={styles.btnBack}
             name='arrow-back-circle'
-            size={30} />
+            size={30}
+            color={myColors.background}
+            onPress={() => navigation.goBack()} />
          <View style={styles.containerTop}>
             <View style={styles.containerImg}>
                <Image
@@ -26,7 +28,7 @@ const Options = () => {
             <TouchableOpacity
                style={styles.boxEdit}
                onPress={() => navigation.navigate('EditProfile')}>
-               <Text style={styles.fontLexend}>Chỉnh sửa tài khoản</Text>
+               <Text style={styles.fontLexend}>Chỉnh Sửa Tài Khoản</Text>
                <Icon
                   style={{ marginLeft: 3 }}
                   name='arrow-forward-circle'
@@ -70,8 +72,8 @@ const styles = StyleSheet.create({
    },
    btnBack: {
       position: 'absolute',
-      left: 20,
-      top: 20
+      left: 15,
+      top: 33
    },
    containerImg: {
       backgroundColor: myColors.textWhile,
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
    },
    fontLexend: {
       fontFamily: myFonts.medium,
-      fontSize: 16,
+      fontSize: 14,
       color: myColors.textWhile
    },
    nameUser: {

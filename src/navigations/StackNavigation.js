@@ -12,7 +12,7 @@ import {
    Confirm,
    Loading,
    Message,
-   ChangePasword,
+   ChangePassword,
    ProductDetails,
    Splash,
    CreateOrder,
@@ -38,7 +38,7 @@ const StackNavigation = () => {
             <Stack.Screen name="EditProfile" component={EditProfile} />
             <Stack.Screen name="Cart" component={Cart} />
             <Stack.Screen name="ProductDetails" component={ProductDetails} />
-            <Stack.Screen name="ChangePasword" component={ChangePasword} />
+            <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="Order" component={Order} />
             <Stack.Screen name="OrderDetails" component={OrderDetails} />

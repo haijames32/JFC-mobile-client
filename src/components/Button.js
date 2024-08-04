@@ -1,5 +1,5 @@
 import React, { StyleSheet, Text, TouchableOpacity } from "react-native"
-import { myColors, WINDOW_HEIGHT, WINDOW_WIDTH } from "../utils"
+import { myColors, myFonts, WINDOW_HEIGHT, WINDOW_WIDTH } from "../utils"
 
 const Button = ({
    title = '',
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
       elevation: 5,
    },
    title: {
-      fontWeight: 'bold',
+      fontFamily: myFonts.bold,
       fontSize: 17,
-      color: 'white'
+      color: myColors.textWhile
    }
 })
