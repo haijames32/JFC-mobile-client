@@ -1,36 +1,37 @@
+import thuc_don from '../../assets/icons/thuc-don.png'
 import { useState } from "react"
-import { View, Button, StyleSheet } from "react-native"
-import DatePicker from "react-native-date-picker"
+import { View, StyleSheet } from "react-native"
+import Header from "./components/Header"
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from "../../utils"
+import OptionItem from "./components/OptionItem"
 
 
 const Home = () => {
-   const [date, setDate] = useState(new Date())
-   const [open, setOpen] = useState(false)
-
-   const getDate = (date) => {
-      setOpen(false)
-      const newDate = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
-      setDate(newDate)
-   }
 
    return (
       <View style={styles.container}>
-         <Button title="Open" onPress={() => setOpen(true)} />
-         <DatePicker
-            style={styles.datePicker}
-            modal
-            mode="date"
-            open={open}
-            date={date}
-            maximumDate={new Date()}
-            onConfirm={(date) => {
-               setOpen(false)
-               setDate(date)
-            }}
-            onCancel={() => {
-               setOpen(false)
-            }}
-         />
+         <Header name="Hải James" />
+
+         <View style={{ height: 390, backgroundColor: 'green' }}></View>
+
+         <View style={styles.option}>
+            <OptionItem
+               name='KHUYẾN MÃI'
+               image={thuc_don}
+               onPress={() => console.log('Thực đơn')} />
+            <OptionItem
+               name='THỰC ĐƠN'
+               image={thuc_don}
+               onPress={() => console.log('Thực đơn')} />
+            <OptionItem
+               name='ĐƠN HÀNG GẦN ĐÂY'
+               image={thuc_don}
+               onPress={() => console.log('Thực đơn')} />
+            <OptionItem
+               name='CỬA HÀNG'
+               image={thuc_don}
+               onPress={() => console.log('Thực đơn')} />
+         </View>
       </View>
    )
 }
@@ -40,9 +41,11 @@ export default Home
 const styles = StyleSheet.create({
    container: {
       flex: 1,
-      alignItems: "center"
    },
-   datePicker: {
-      top: 10
-   }
+   option: {
+      paddingVertical: 20,
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-evenly'
+   },
 })

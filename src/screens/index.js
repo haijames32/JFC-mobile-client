@@ -17,8 +17,8 @@ import OrderDetails from './Order/OrderDetails'
 import CreateOrder from './Order/CreateOrder'
 import Options from './Options/Options'
 import Settings from './Settings/Settings'
-import Address from './Options/Address'
-
+import Address from './Options/Address/Address'
+import EditAddress from './Options/Address/EditAddress'
 
 export {
    Login,
@@ -41,4 +41,5 @@ export {
    Options,
    Settings,
    Address,
+   EditAddress,
 }
