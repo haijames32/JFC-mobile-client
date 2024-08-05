@@ -29,8 +29,9 @@ export default Product
 
 const styles = StyleSheet.create({
    container: {
-      height: 150,
-      width: WINDOW_WIDTH - 20,
+      height: 160,
+      width: WINDOW_WIDTH - 25,
+      marginHorizontal: 12.5,
       borderRadius: 15,
       marginTop: 15,
       flexDirection: 'row',

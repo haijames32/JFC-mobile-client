@@ -59,7 +59,6 @@ const CategoryDetails = () => {
             data={data}
             estimatedItemSize={WINDOW_WIDTH - 20}
             keyExtractor={item => item.id}
-            contentContainerStyle={{ paddingBottom: 15, paddingHorizontal: 10 }}
             renderItem={({ item }) => (
                <Product
                   name={item.name}

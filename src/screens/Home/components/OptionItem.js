@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
       backgroundColor: myColors.primary,
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: 13
+      marginVertical: 7
    },
    img: {
       height: 50,
