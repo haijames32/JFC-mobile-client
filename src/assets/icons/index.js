@@ -5,6 +5,7 @@ import success from './success.png'
 import menu from './thuc-don.png'
 import warning from './warning.png'
 import box_order from './box-order.png'
+import birth_day from './birth-day.png'
 
 export {
    error,
@@ -14,4 +15,5 @@ export {
    success,
    warning,
    box_order,
+   birth_day,
 }

@@ -1,4 +1,4 @@
-import { promotion, list_order, menu, box_order } from '../../assets/icons/index'
+import { promotion, list_order, menu, box_order, birth_day } from '../../assets/icons/index'
 import { View, StyleSheet, ScrollView, FlatList, Text, TouchableOpacity } from "react-native"
 import Header from "./components/Header"
 import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
@@ -8,13 +8,12 @@ import { useNavigation } from '@react-navigation/native'
 import ListCombo from './components/ListCombo'
 import NewsItem from './components/NewsItem'
 import { Icon } from '../../components'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 
 const Home = () => {
    const [seeMore, setSeemore] = useState(false)
    const navigation = useNavigation()
-
 
    const dataProduct = [
       { id: 1, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
@@ -37,64 +36,95 @@ const Home = () => {
    ]
 
    const data = [
-      { title: 'ĐẶT HÀNG NGAY', image: box_order },
-      { title: 'TIỆC SINH NHẬT', image: box_order },
-      { title: 'ĐƠN HÀNG LỚN', image: box_order },
+      { title: 'ĐẶT HÀNG NGAY', image: box_order, color: myColors.primary2 },
+      { title: 'TIỆC SINH NHẬT', image: birth_day, color: '#189AB4' },
+      { title: 'ĐƠN HÀNG LỚN', image: box_order, color: '#81B622' },
    ]
+
+   const componentHeader = useMemo(() => {
+      return <Header name="Hải James" />
+   }, [])
+
+   const componentSlider = useMemo(() => {
+      return <Slider listSlider={dataSlider} />
+   }, [])
+
+   const componentOptions = useMemo(() => {
+      return (
+         <View style={styles.option}>
+            <OptionItem
+               name='KHUYẾN MÃI'
+               image={promotion}
+               onPress={() => console.log('Khuyến mãi')} />
+            <OptionItem
+               name='THỰC ĐƠN'
+               image={menu}
+               onPress={() => navigation.navigate('Category')} />
+            <OptionItem
+               name='ĐƠN HÀNG GẦN ĐÂY'
+               image={list_order}
+               onPress={() => navigation.navigate('Order')} />
+            <OptionItem
+               name='CỬA HÀNG'
+               image={menu}
+               onPress={() => console.log('Cửa hàng')} />
+         </View>
+      )
+   }, [])
+
+   const componentCombo = useMemo(() => {
+      return <ListCombo listProduct={dataProduct} />
+   }, [])
+
+   const componentNews = useMemo(() => {
+      return (
+         <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 5 }}
+            data={data}
+            renderItem={({ item, index }) => (
+               <NewsItem
+                  key={index}
+                  title={item.title}
+                  image={item.image}
+                  color={item.color}
+                  onPress={() => console.log(item.title)} />
+            )} />
+      )
+   }, [])
 
 
    return (
       <View style={styles.container}>
          <ScrollView
             showsVerticalScrollIndicator={false}>
-            <Header name="Hải James" />
+            {componentHeader}
 
             <View style={styles.containerContent}>
-               <Slider listSlider={dataSlider} />
-
-               <View style={styles.option}>
-                  <OptionItem
-                     name='KHUYẾN MÃI'
-                     image={promotion}
-                     onPress={() => console.log('Thực đơn')} />
-                  <OptionItem
-                     name='THỰC ĐƠN'
-                     image={menu}
-                     onPress={() => navigation.navigate('Category')} />
-                  <OptionItem
-                     name='ĐƠN HÀNG GẦN ĐÂY'
-                     image={list_order}
-                     onPress={() => console.log('Thực đơn')} />
-                  <OptionItem
-                     name='CỬA HÀNG'
-                     image={menu}
-                     onPress={() => console.log('Thực đơn')} />
-               </View>
-               <ListCombo listProduct={dataProduct} />
+               {componentSlider}
+               {componentOptions}
+               {componentCombo}
             </View>
 
             <View style={styles.news}>
-               <FlatList
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{ paddingHorizontal: 5 }}
-                  data={data}
-                  renderItem={({ item, index }) => (
-                     <NewsItem
-                        key={index}
-                        title={item.title}
-                        image={item.image}
-                        onPress={() => console.log(item.title)} />
-                  )} />
+               {componentNews}
                <TouchableOpacity
                   onPress={() => setSeemore(!seeMore)}
                   activeOpacity={0.5}
                   style={styles.boxSeemore}>
                   <Text style={styles.txtSeemore}>Tin mới nhất</Text>
-                  <Icon
-                     name='arrow-down-circle'
-                     color={myColors.primary}
-                     size={35} />
+                  {seeMore ? (
+                     <Icon
+                        name='arrow-up-circle'
+                        color={myColors.primary}
+                        size={35} />
+                  ) : (
+                     <Icon
+                        name='arrow-down-circle'
+                        color={myColors.primary}
+                        size={35} />
+                  )}
                </TouchableOpacity>
                {seeMore &&
                   <Text style={{ color: 'black' }}>ABC</Text>
