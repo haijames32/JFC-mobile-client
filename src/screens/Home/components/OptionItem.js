@@ -20,12 +20,20 @@ export default OptionItem
 const styles = StyleSheet.create({
    container: {
       width: (WINDOW_WIDTH / 2) - 20,
-      height: 90,
+      height: 88,
       borderRadius: 15,
       backgroundColor: myColors.primary,
       alignItems: 'center',
       justifyContent: 'center',
-      marginVertical: 7
+      marginVertical: 7,
+      shadowColor: '#000',
+      shadowOffset: {
+         width: 0,
+         height: 2,
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 4,
+      elevation: 5,
    },
    img: {
       height: 50,

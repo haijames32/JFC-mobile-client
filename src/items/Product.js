@@ -29,13 +29,21 @@ export default Product
 
 const styles = StyleSheet.create({
    container: {
-      height: 160,
+      height: 155,
       width: WINDOW_WIDTH - 25,
+      marginVertical: 7,
       marginHorizontal: 12.5,
       borderRadius: 15,
-      marginTop: 15,
       flexDirection: 'row',
       backgroundColor: myColors.textWhile,
+      shadowColor: '#000',
+      shadowOffset: {
+         width: 0,
+         height: 2,
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 4,
+      elevation: 3,
    },
    img: {
       width: 150,

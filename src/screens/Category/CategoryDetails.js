@@ -57,6 +57,8 @@ const CategoryDetails = () => {
 
          <FlashList
             data={data}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingVertical: 10 }}
             estimatedItemSize={WINDOW_WIDTH - 20}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (

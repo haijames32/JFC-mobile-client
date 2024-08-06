@@ -4,11 +4,44 @@ import FastImage from "react-native-fast-image"
 import { useRef, useState, useEffect } from "react"
 
 const Slider = ({ listSlider = [] }) => {
+   const flatListRef = useRef(null)
    const [state, setState] = useState({
       currentIndex: 0,
       isReverse: false
    })
-   const flatListRef = useRef(null)
+
+   const handleNext = () => {
+      if (state.currentIndex < listSlider.length - 1) {
+         let index = state.currentIndex + 1
+         setState(pre => ({ ...pre, currentIndex: index }))
+         flatListRef.current?.scrollToIndex({ index })
+      } else {
+         let index = state.currentIndex - 1;
+         setState(pre => ({ ...pre, currentIndex: index, isReverse: true }));
+         flatListRef.current?.scrollToIndex({ index });
+      }
+   }
+
+   const handlePrevious = () => {
+      if (state.currentIndex <= 0) {
+         let index = state.currentIndex + 1
+         setState(pre => ({ ...pre, currentIndex: index, isReverse: false }))
+         flatListRef.current?.scrollToIndex({ index })
+      } else {
+         let index = state.currentIndex - 1
+         setState(pre => ({ ...pre, currentIndex: index }))
+         flatListRef.current?.scrollToIndex({ index })
+      }
+   }
+
+   const renderItem = ({ item }) => {
+      return (
+         <FastImage
+            resizeMode="stretch"
+            style={styles.img}
+            source={item.image} />
+      )
+   }
 
    useEffect(() => {
       let timer
@@ -21,44 +54,10 @@ const Slider = ({ listSlider = [] }) => {
             }
          }, 2500)
       }
-
       return () => {
          if (timer) clearInterval(timer)
       }
    }, [listSlider, state])
-
-   const handleNext = () => {
-      if (state.currentIndex < listSlider.length - 1) {
-         let index = state.currentIndex + 1
-         setState(pre => ({ ...pre, currentIndex: index }))
-         flatListRef.current?.scrollToIndex({ index })
-      } else {
-         let index = state.currentIndex - 1;
-         setState(pre => ({ ...pre, currentIndex: index, isReverse: true }));
-         flatListRef.current?.scrollToIndex({ index });
-      }
-   };
-
-   const handlePrevious = () => {
-      if (state.currentIndex <= 0) {
-         let index = state.currentIndex + 1
-         setState(pre => ({ ...pre, currentIndex: index, isReverse: false }))
-         flatListRef.current?.scrollToIndex({ index })
-      } else {
-         let index = state.currentIndex - 1
-         setState(pre => ({ ...pre, currentIndex: index }))
-         flatListRef.current?.scrollToIndex({ index })
-      }
-   };
-
-   const renderItem = ({ item }) => {
-      return (
-         <FastImage
-            resizeMode="stretch"
-            style={styles.img}
-            source={item.image} />
-      )
-   }
 
    return (
       <View style={styles.container}>
@@ -92,7 +91,7 @@ export default Slider
 const styles = StyleSheet.create({
    container: {
       width: WINDOW_WIDTH,
-      height: 420
+      height: 388
    },
    img: {
       width: WINDOW_WIDTH,
