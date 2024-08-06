@@ -4,6 +4,7 @@ import promotion from './promotion.png'
 import success from './success.png'
 import menu from './thuc-don.png'
 import warning from './warning.png'
+import box_order from './box-order.png'
 
 export {
    error,
@@ -12,4 +13,5 @@ export {
    promotion,
    success,
    warning,
+   box_order,
 }

@@ -1,15 +1,20 @@
-import { promotion, list_order, menu } from '../../assets/icons/index'
-import { View, StyleSheet, ScrollView } from "react-native"
+import { promotion, list_order, menu, box_order } from '../../assets/icons/index'
+import { View, StyleSheet, ScrollView, FlatList, Text, TouchableOpacity } from "react-native"
 import Header from "./components/Header"
-import { myColors } from "../../utils"
+import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
 import OptionItem from "./components/OptionItem"
 import Slider from './components/Slider'
 import { useNavigation } from '@react-navigation/native'
 import ListCombo from './components/ListCombo'
+import NewsItem from './components/NewsItem'
+import { Icon } from '../../components'
+import { useState } from 'react'
 
 
 const Home = () => {
+   const [seeMore, setSeemore] = useState(false)
    const navigation = useNavigation()
+
 
    const dataProduct = [
       { id: 1, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
@@ -31,6 +36,11 @@ const Home = () => {
       { image: require('../../assets/images/banner-5.png') },
    ]
 
+   const data = [
+      { title: 'ĐẶT HÀNG NGAY', image: box_order },
+      { title: 'TIỆC SINH NHẬT', image: box_order },
+      { title: 'ĐƠN HÀNG LỚN', image: box_order },
+   ]
 
 
    return (
@@ -64,7 +74,31 @@ const Home = () => {
             </View>
 
             <View style={styles.news}>
-
+               <FlatList
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={{ paddingHorizontal: 5 }}
+                  data={data}
+                  renderItem={({ item, index }) => (
+                     <NewsItem
+                        key={index}
+                        title={item.title}
+                        image={item.image}
+                        onPress={() => console.log(item.title)} />
+                  )} />
+               <TouchableOpacity
+                  onPress={() => setSeemore(!seeMore)}
+                  activeOpacity={0.5}
+                  style={styles.boxSeemore}>
+                  <Text style={styles.txtSeemore}>Tin mới nhất</Text>
+                  <Icon
+                     name='arrow-down-circle'
+                     color={myColors.primary}
+                     size={35} />
+               </TouchableOpacity>
+               {seeMore &&
+                  <Text style={{ color: 'black' }}>ABC</Text>
+               }
             </View>
          </ScrollView>
       </View>
@@ -80,7 +114,7 @@ const styles = StyleSheet.create({
    },
    containerContent: {
       backgroundColor: myColors.primary2,
-      paddingBottom: 20
+      paddingBottom: 5
    },
    option: {
       paddingVertical: 15,
@@ -90,6 +124,20 @@ const styles = StyleSheet.create({
    },
    news: {
       backgroundColor: myColors.background,
-      height: 200
+      paddingBottom: 30,
+      paddingTop: 15,
+   },
+   boxSeemore: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: WINDOW_WIDTH,
+      padding: 10
+   },
+   txtSeemore: {
+      fontFamily: myFonts.extraBold,
+      color: myColors.textBlack,
+      fontSize: 22,
+      marginRight: 5
    }
 })
