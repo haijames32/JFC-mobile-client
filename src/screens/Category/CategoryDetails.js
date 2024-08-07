@@ -66,7 +66,7 @@ const CategoryDetails = () => {
                   name={item.name}
                   price={item.price}
                   image={item.image}
-                  onPress={() => console.log(item.id)} />
+                  onPress={() => navigation.navigate('ProductDetails', { item })} />
             )}
          />
       </View>
