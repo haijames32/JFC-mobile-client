@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
    container: {
       width: '100%',
       height: 100,
-      borderBottomWidth: 0.5,
+      borderBottomWidth: 0.3,
+      borderBottomColor: myColors.textHint,
       marginVertical: 3,
       flexDirection: 'row',
       paddingHorizontal: 8,

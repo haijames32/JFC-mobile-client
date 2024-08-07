@@ -1,17 +1,21 @@
 import { StyleSheet, Text, View } from "react-native"
 import { myColors, myFonts, WINDOW_HEIGHT, WINDOW_WIDTH } from "../../utils"
-import { useMemo } from "react"
-import { Icon, ListEmpty } from "../../components"
+import { useMemo, useState } from "react"
+import { Button, Icon, ListEmpty } from "../../components"
 import { useNavigation } from "@react-navigation/native"
 import { FlashList } from "@shopify/flash-list"
 import CartItem from "./components/CartItem"
+import { formatPrice } from "../../services/FormatPrice"
 
 const Cart = () => {
    const navigation = useNavigation()
+   const [total, setTotal] = useState(0)
 
    const data = [
       { id: 1, name: 'Gà giòn vãi ò', price: 33000, quantity: 1, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
       { id: 2, name: 'Gà giòn vãi ò', price: 33000, quantity: 1, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 3, name: 'Gà giòn vãi ò', price: 33000, quantity: 1, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 4, name: 'Gà giòn vãi ò', price: 33000, quantity: 1, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
    ]
 
 
@@ -29,6 +33,24 @@ const Cart = () => {
       )
    }, [])
 
+   const componentButton = useMemo(() => {
+      return (
+         <View style={styles.boxBtn}>
+            <Button
+               style={[styles.btn, { backgroundColor: myColors.primary2 }]}
+               title="THÊM MÓN"
+               textColor={myColors.textBlack}
+               sizeTitle={14}
+               onPress={() => console.log('Chọn món')} />
+            <Button
+               style={styles.btn}
+               title="THANH TOÁN"
+               sizeTitle={14}
+               onPress={() => console.log('Thanh toán')} />
+         </View>
+      )
+   }, [])
+
 
    return (
       <View style={styles.container}>
@@ -37,7 +59,7 @@ const Cart = () => {
             <FlashList
                data={data}
                showsVerticalScrollIndicator={false}
-               contentContainerStyle={{ paddingVertical: 5 }}
+               contentContainerStyle={{ paddingTop: 5 }}
                estimatedItemSize={350}
                keyExtractor={item => item.id}
                renderItem={({ item }) => (
@@ -53,7 +75,11 @@ const Cart = () => {
                      title="Không có sản phẩm" />
                } />
             <View style={styles.containerBottom}>
-
+               <View style={styles.boxTotal}>
+                  <Text style={styles.txtTongCong}>Tổng Cộng :</Text>
+                  <Text style={[styles.font, { color: myColors.primary, fontSize: 18 }]}>{formatPrice(total)} đ</Text>
+               </View>
+               {componentButton}
             </View>
          </View>
       </View>
@@ -90,6 +116,30 @@ const styles = StyleSheet.create({
       fontFamily: myFonts.extraBold
    },
    containerBottom: {
-
+      position: 'static',
+      bottom: 0,
+      right: 0,
+      height: '23%',
+      borderTopWidth: 1,
+      padding: 10,
+   },
+   boxTotal: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+   },
+   txtTongCong: {
+      fontFamily: myFonts.regular,
+      fontSize: 16,
+      color: myColors.textBlack
+   },
+   boxBtn: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: 15
+   },
+   btn: {
+      width: 150,
+      height: 50
    }
 })
