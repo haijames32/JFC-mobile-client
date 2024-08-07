@@ -5,6 +5,7 @@ const Button = ({
    title = '',
    onPress,
    textColor = myColors.textWhile,
+   sizeTitle = 17,
    ...props
 }) => {
    return (
@@ -16,7 +17,7 @@ const Button = ({
             props.style,
          ]}
          onPress={onPress}>
-         <Text style={[styles.title, { color: textColor }]}>{title}</Text>
+         <Text style={[styles.title, { color: textColor, fontSize: sizeTitle }]}>{title}</Text>
       </TouchableOpacity>
    )
 }
@@ -42,7 +43,6 @@ const styles = StyleSheet.create({
    },
    title: {
       fontFamily: myFonts.bold,
-      fontSize: 17,
       color: myColors.textWhile
    }
 })

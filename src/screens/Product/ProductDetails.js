@@ -1,8 +1,8 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
+import { myColors, myFonts, WINDOW_HEIGHT, WINDOW_WIDTH } from "../../utils"
 import { formatPrice } from "../../services/FormatPrice"
-import { Icon, Icons } from "../../components"
+import { Button, Icon, Icons } from "../../components"
 import FastImage from "react-native-fast-image"
 import { useMemo, useState } from "react"
 
@@ -42,7 +42,7 @@ const ProductDetails = () => {
                      disabled={quantity === 1 ? true : false}
                      onPress={() => setQuantity(quantity - 1)}
                      activeOpacity={0.5}
-                     style={[styles.btnUpDown, { opacity: quantity === 1 ? 0.6 : 1 }]}>
+                     style={[styles.btnUpDown, { opacity: quantity === 1 ? 0.7 : 1 }]}>
                      <Icon
                         disabled
                         type={Icons.FontAwesome6}
@@ -68,6 +68,22 @@ const ProductDetails = () => {
             </ScrollView>
          </View>
 
+         <View style={styles.containerBottom}>
+            <View style={styles.boxTotal}>
+               <Text style={styles.txtTongCong}>Tổng Cộng :</Text>
+               <Text style={[styles.font, { color: myColors.primary }]}>{formatPrice(price)} đ</Text>
+            </View>
+            <View style={styles.boxBtn}>
+               <Button
+                  style={styles.btn}
+                  title="THÊM VÀO GIỎ"
+                  sizeTitle={13} />
+               <Button
+                  style={styles.btn}
+                  title="THANH TOÁN NGAY"
+                  sizeTitle={13} />
+            </View>
+         </View>
       </View>
    )
 }
@@ -113,16 +129,17 @@ const styles = StyleSheet.create({
    containerDescription: {
       backgroundColor: myColors.textWhile,
       marginTop: 10,
-      height: 200
+      flex: 1,
    },
    boxQuantity: {
       width: WINDOW_WIDTH,
       justifyContent: 'center',
       flexDirection: 'row',
       padding: 10,
+      marginTop: 25,
    },
    btnUpDown: {
-      height: 45,
+      height: 48,
       width: 50,
       justifyContent: 'center',
       alignItems: 'center',
@@ -130,8 +147,8 @@ const styles = StyleSheet.create({
       borderRadius: 8
    },
    boxTxtQuantity: {
-      width: 70,
-      height: '100%',
+      width: 90,
+      height: 48,
       borderWidth: 1,
       borderRadius: 10,
       marginHorizontal: 15,
@@ -142,5 +159,40 @@ const styles = StyleSheet.create({
       fontFamily: myFonts.medium,
       fontSize: 16,
       color: myColors.textBlack
+   },
+   containerBottom: {
+      height: WINDOW_HEIGHT * 0.18,
+      width: WINDOW_WIDTH,
+      position: 'static',
+      bottom: 0,
+      right: 0,
+      borderTopWidth: 1,
+      borderTopColor: myColors.primary,
+      paddingHorizontal: 15,
+      paddingVertical: 20
+   },
+   boxTotal: {
+      width: '100%',
+      flexDirection: 'row',
+      padding: 5,
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      borderWidth: 1
+   },
+   txtTongCong: {
+      fontFamily: myFonts.light,
+      color: myColors.textBlack,
+      fontSize: 16
+   },
+   boxBtn: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      padding: 5,
+      marginTop: 8
+   },
+   btn: {
+      width: 150,
+      height: 47
    }
 })
