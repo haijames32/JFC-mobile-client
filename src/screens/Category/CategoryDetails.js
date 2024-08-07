@@ -12,17 +12,16 @@ const CategoryDetails = () => {
    const address = '100 Đường Ô Diên, Đội 2, Hạ Mỗ, Đan Phượng, Hà Nội'
 
    const data = [
-      { id: 1, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
-      { id: 2, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
-      { id: 3, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
-      { id: 4, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
-      { id: 5, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
-      { id: 6, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
-      { id: 7, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
-      { id: 8, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
-      { id: 9, name: '2 Miếng gà giòn', price: '33,000', image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 1, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 2, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 3, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 4, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 5, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 6, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 7, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 8, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
+      { id: 9, name: '2 Miếng gà giòn', price: 33000, image: 'https://ik.imagekit.io/haijames32/fried-chicken.png' },
    ]
-
 
 
    return (
@@ -32,10 +31,8 @@ const CategoryDetails = () => {
             isIconCart />
 
          <View style={styles.address}>
-            <Text
-               style={styles.giaoden}>Giao đến: </Text>
-            <Text
-               style={styles.txtAddress}
+            <Text style={styles.giaoden}>Giao đến: </Text>
+            <Text style={styles.txtAddress}
                numberOfLines={1}>{address}</Text>
             <View style={styles.boxIconEditAddress}>
                <Icon
@@ -60,9 +57,10 @@ const CategoryDetails = () => {
 
          <FlashList
             data={data}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingVertical: 10 }}
             estimatedItemSize={WINDOW_WIDTH - 20}
             keyExtractor={item => item.id}
-            contentContainerStyle={{ paddingBottom: 15, paddingHorizontal: 10 }}
             renderItem={({ item }) => (
                <Product
                   name={item.name}

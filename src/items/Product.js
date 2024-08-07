@@ -2,8 +2,10 @@ import { StyleSheet, Text, View } from "react-native"
 import FastImage from "react-native-fast-image"
 import { myColors, myFonts, WINDOW_WIDTH } from "../utils"
 import { Button } from "../components"
+import { formatPrice } from "../services/FormatPrice"
 
 const Product = ({ image, name, price, onPress }) => {
+   const format = formatPrice(price)
    return (
       <View style={styles.container}>
          <View>
@@ -13,7 +15,7 @@ const Product = ({ image, name, price, onPress }) => {
          </View>
          <View style={styles.containerRight}>
             <Text style={[styles.font, styles.txtName]}>{name}</Text>
-            <Text style={[styles.font, styles.txtPrice]}>{price} đ</Text>
+            <Text style={[styles.font, styles.txtPrice]}>{format} đ</Text>
             <Button
                style={styles.btn}
                title="MUA NGAY"
@@ -27,12 +29,21 @@ export default Product
 
 const styles = StyleSheet.create({
    container: {
-      height: 150,
-      width: WINDOW_WIDTH - 20,
+      height: 155,
+      width: WINDOW_WIDTH - 25,
+      marginVertical: 7,
+      marginHorizontal: 12.5,
       borderRadius: 15,
-      marginTop: 15,
       flexDirection: 'row',
       backgroundColor: myColors.textWhile,
+      shadowColor: '#000',
+      shadowOffset: {
+         width: 0,
+         height: 2,
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 4,
+      elevation: 3,
    },
    img: {
       width: 150,
@@ -54,7 +65,8 @@ const styles = StyleSheet.create({
    },
    txtPrice: {
       fontSize: 15,
-      color: myColors.primary
+      color: myColors.primary,
+      marginTop: 5
    },
    btn: {
       width: 140,
