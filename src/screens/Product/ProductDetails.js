@@ -156,12 +156,20 @@ const styles = StyleSheet.create({
       marginTop: 25,
    },
    btnUpDown: {
-      height: 48,
-      width: 50,
+      height: 45,
+      width: 48,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: myColors.primary,
-      borderRadius: 8
+      borderRadius: 6,
+      shadowColor: '#000',
+      shadowOffset: {
+         width: 0,
+         height: 2,
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 4,
+      elevation: 3,
    },
    boxTxtQuantity: {
       width: 90,
@@ -186,7 +194,8 @@ const styles = StyleSheet.create({
       borderTopWidth: 1,
       borderTopColor: myColors.primary,
       paddingHorizontal: 20,
-      paddingVertical: 20
+      paddingVertical: 20,
+      backgroundColor: myColors.textWhile
    },
    boxTotal: {
       width: '100%',
@@ -204,7 +213,6 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      paddingTop: 5,
       marginTop: 10
    },
    btn: {

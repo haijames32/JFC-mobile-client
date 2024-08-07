@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Image, Pressable, TouchableOpacity } from 'reac
 import { Input, Button } from '../../components'
 import PassInput from './components/PassInput'
 import { myColors, myFonts, WINDOW_HEIGHT, WINDOW_WIDTH } from '../../utils'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 
 const Login = () => {
@@ -12,7 +11,7 @@ const Login = () => {
       navigation.navigate('Register')
    }
    const handleLogin = () => {
-      navigation.navigate('Home')
+      navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
    }
    return (
       <View style={styles.container}>
