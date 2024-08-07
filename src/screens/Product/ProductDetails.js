@@ -4,12 +4,16 @@ import { myColors, myFonts, WINDOW_HEIGHT, WINDOW_WIDTH } from "../../utils"
 import { formatPrice } from "../../services/FormatPrice"
 import { Button, Icon, Icons } from "../../components"
 import FastImage from "react-native-fast-image"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 const ProductDetails = () => {
    const navigation = useNavigation()
    const { name, price, image } = useRoute().params?.item
-   const [quantity, setQuantity] = useState(1)
+   const [state, setState] = useState({
+      quantity: 1,
+      total: 0
+   })
+
 
 
    const componentInfoProduct = useMemo(() => {
@@ -31,6 +35,27 @@ const ProductDetails = () => {
       )
    }, [])
 
+   const componentButton = useMemo(() => {
+      return (
+         <View style={styles.boxBtn}>
+            <Button
+               style={[styles.btn, { backgroundColor: '#F67B50' }]}
+               title="THÊM VÀO GIỎ"
+               sizeTitle={13}
+               onPress={() => console.log('Thêm giỏ hàng')} />
+            <Button
+               style={styles.btn}
+               title="THANH TOÁN NGAY"
+               sizeTitle={13}
+               onPress={() => console.log('Thanh toán ngay')} />
+         </View>
+      )
+   }, [])
+
+   useEffect(() => {
+      setState(pre => ({ ...pre, total: pre.quantity * price }))
+   }, [state.quantity])
+
 
    return (
       <View style={styles.container}>
@@ -39,10 +64,10 @@ const ProductDetails = () => {
             <ScrollView>
                <View style={styles.boxQuantity}>
                   <TouchableOpacity
-                     disabled={quantity === 1 ? true : false}
-                     onPress={() => setQuantity(quantity - 1)}
+                     disabled={state.quantity === 1 ? true : false}
+                     onPress={() => setState(pre => ({ ...pre, quantity: pre.quantity - 1 }))}
                      activeOpacity={0.5}
-                     style={[styles.btnUpDown, { opacity: quantity === 1 ? 0.7 : 1 }]}>
+                     style={[styles.btnUpDown, { opacity: state.quantity === 1 ? 0.7 : 1 }]}>
                      <Icon
                         disabled
                         type={Icons.FontAwesome6}
@@ -51,10 +76,10 @@ const ProductDetails = () => {
                         size={20} />
                   </TouchableOpacity>
                   <View style={styles.boxTxtQuantity}>
-                     <Text style={styles.txtQuantity}>{quantity}</Text>
+                     <Text style={styles.txtQuantity}>{state.quantity}</Text>
                   </View>
                   <TouchableOpacity
-                     onPress={() => setQuantity(quantity + 1)}
+                     onPress={() => setState(pre => ({ ...pre, quantity: pre.quantity + 1 }))}
                      activeOpacity={0.5}
                      style={styles.btnUpDown}>
                      <Icon
@@ -71,18 +96,9 @@ const ProductDetails = () => {
          <View style={styles.containerBottom}>
             <View style={styles.boxTotal}>
                <Text style={styles.txtTongCong}>Tổng Cộng :</Text>
-               <Text style={[styles.font, { color: myColors.primary }]}>{formatPrice(price)} đ</Text>
+               <Text style={[styles.font, { color: myColors.primary }]}>{formatPrice(state.total)} đ</Text>
             </View>
-            <View style={styles.boxBtn}>
-               <Button
-                  style={styles.btn}
-                  title="THÊM VÀO GIỎ"
-                  sizeTitle={13} />
-               <Button
-                  style={styles.btn}
-                  title="THANH TOÁN NGAY"
-                  sizeTitle={13} />
-            </View>
+            {componentButton}
          </View>
       </View>
    )
@@ -110,7 +126,8 @@ const styles = StyleSheet.create({
    btnBack: {
       position: 'absolute',
       left: 15,
-      top: 33
+      top: 33,
+      zIndex: 1
    },
    img: {
       width: WINDOW_WIDTH,
@@ -168,31 +185,31 @@ const styles = StyleSheet.create({
       right: 0,
       borderTopWidth: 1,
       borderTopColor: myColors.primary,
-      paddingHorizontal: 15,
+      paddingHorizontal: 20,
       paddingVertical: 20
    },
    boxTotal: {
       width: '100%',
       flexDirection: 'row',
-      padding: 5,
+      paddingTop: 5,
       justifyContent: 'space-between',
       alignItems: 'center',
-      borderWidth: 1
    },
    txtTongCong: {
       fontFamily: myFonts.light,
       color: myColors.textBlack,
-      fontSize: 16
+      fontSize: 17
    },
    boxBtn: {
       flexDirection: 'row',
-      justifyContent: 'space-around',
+      justifyContent: 'space-between',
       alignItems: 'center',
-      padding: 5,
-      marginTop: 8
+      paddingTop: 5,
+      marginTop: 10
    },
    btn: {
-      width: 150,
-      height: 47
+      width: (WINDOW_WIDTH / 2) - 30,
+      height: 47,
+      borderRadius: 10
    }
 })
