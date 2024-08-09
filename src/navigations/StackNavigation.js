@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
    return (
       <NavigationContainer>
-         <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
+         <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
@@ -37,7 +37,6 @@ const StackNavigation = () => {
             <Stack.Screen name="Category" component={Category} />
             <Stack.Screen name="CategoryDetails" component={CategoryDetails} />
             <Stack.Screen name="ProductDetails" component={ProductDetails} />
-            <Stack.Screen name="Cart" component={Cart} />
             <Stack.Screen name="Order" component={Order} />
             <Stack.Screen name="OrderDetails" component={OrderDetails} />
             <Stack.Screen name="Options" component={Options} />
@@ -48,11 +47,11 @@ const StackNavigation = () => {
             <Stack.Screen name="Address" component={Address} />
             <Stack.Screen name="EditAddress" component={EditAddress} />
             <Stack.Screen name="CreateOrder" component={CreateOrder} />
+            <Stack.Group screenOptions={{ presentation: 'transparentModal', animation: 'flip' }}>
+               <Stack.Screen name="Cart" component={Cart} />
+            </Stack.Group>
             <Stack.Group
-               screenOptions={{
-                  presentation: 'transparentModal',
-                  animation: 'fade'
-               }}>
+               screenOptions={{ presentation: 'transparentModal', animation: 'fade' }}>
                <Stack.Screen name="Loading" component={Loading} />
                <Stack.Screen name="Message" component={Message} />
                <Stack.Screen name="Confirm" component={Confirm} />

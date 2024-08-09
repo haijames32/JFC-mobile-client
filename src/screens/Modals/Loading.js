@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
    },
    modalView: {
       width: WINDOW_WIDTH * 0.35,
-      backgroundColor: myColors.background,
+      backgroundColor: myColors.primary2,
       borderRadius: 15,
       paddingVertical: 20,
       paddingHorizontal: 20,
@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
       fontSize: 16,
       marginTop: 7,
       fontFamily: myFonts.medium,
-      color: myColors.black
+      color: myColors.textBlack
    }
 })

@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { Button, Header, Icon, Icons } from "../../components"
+import { StyleSheet, Text, View, ImageBackground } from "react-native"
+import { Header, Icon, Icons } from "../../components"
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
 import { FlashList } from "@shopify/flash-list"
@@ -25,7 +25,9 @@ const CategoryDetails = () => {
 
 
    return (
-      <View style={styles.container}>
+      <ImageBackground
+         source={require('../../assets/images/img-background.jpg')}
+         style={styles.container}>
          <Header
             title="Chọn Món"
             isIconCart />
@@ -69,7 +71,7 @@ const CategoryDetails = () => {
                   onPress={() => navigation.navigate('ProductDetails', { item })} />
             )}
          />
-      </View>
+      </ImageBackground>
    )
 }
 

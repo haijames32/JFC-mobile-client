@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, View } from "react-native"
 import { WINDOW_WIDTH } from "../../../utils"
 import FastImage from "react-native-fast-image"
 import { useRef, useState, useEffect } from "react"
+import { useRoute } from "@react-navigation/native"
 
 const Slider = ({ listSlider = [] }) => {
    const flatListRef = useRef(null)
@@ -43,21 +44,23 @@ const Slider = ({ listSlider = [] }) => {
       )
    }
 
-   useEffect(() => {
-      let timer
-      if (listSlider.length >= 2) {
-         timer = setInterval(() => {
-            if (state.isReverse) {
-               handlePrevious()
-            } else {
-               handleNext()
-            }
-         }, 2500)
-      }
-      return () => {
-         if (timer) clearInterval(timer)
-      }
-   }, [listSlider, state])
+   // useEffect(() => {
+   //    let timer
+   //    if (listSlider.length >= 2) {
+   //       timer = setInterval(() => {
+   //          if (state.isReverse) {
+   //             handlePrevious()
+   //          } else {
+   //             handleNext()
+   //          }
+   //       }, 2500)
+   //    }
+   //    return () => {
+   //       if (timer) {
+   //          clearInterval(timer)
+   //       }
+   //    }
+   // }, [state])
 
    return (
       <View style={styles.container}>

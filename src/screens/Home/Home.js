@@ -1,14 +1,14 @@
+import { useMemo, useState } from 'react'
+import { View, StyleSheet, ScrollView, FlatList, Text, TouchableOpacity, ImageBackground } from "react-native"
+import { useNavigation } from '@react-navigation/native'
 import { promotion, list_order, menu, box_order, birth_day } from '../../assets/icons/index'
-import { View, StyleSheet, ScrollView, FlatList, Text, TouchableOpacity } from "react-native"
-import Header from "./components/Header"
 import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
+import { Icon } from '../../components'
+import Header from "./components/Header"
 import OptionItem from "./components/OptionItem"
 import Slider from './components/Slider'
-import { useNavigation } from '@react-navigation/native'
 import ListCombo from './components/ListCombo'
 import NewsItem from './components/NewsItem'
-import { Icon } from '../../components'
-import { useMemo, useState } from 'react'
 
 
 const Home = () => {
@@ -107,7 +107,9 @@ const Home = () => {
                {componentCombo}
             </View>
 
-            <View style={styles.news}>
+            <ImageBackground
+               source={require('../../assets/images/img-background.jpg')}
+               style={styles.news}>
                {componentNews}
                <TouchableOpacity
                   onPress={() => setSeemore(!seeMore)}
@@ -129,7 +131,7 @@ const Home = () => {
                {seeMore &&
                   <Text style={{ color: 'black' }}>ABC</Text>
                }
-            </View>
+            </ImageBackground>
          </ScrollView>
       </View>
    )
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
       justifyContent: 'space-evenly'
    },
    news: {
-      backgroundColor: myColors.background,
+      resizeMode: 'cover',
       paddingBottom: 30,
       paddingTop: 15,
    },

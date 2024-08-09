@@ -1,4 +1,3 @@
-
 export const myColors = {
    primary: '#e51c40',
    primary2: '#f3bb32',
@@ -6,7 +5,5 @@ export const myColors = {
    textWhile: '#fff',
    textBlack: '#000',
    textHint: '#74747494',
-   textBlackHint: '#383838',
+   textBlackHint: '#5c5c5c',
 }
-
-// export const myColors = myTheme.colors

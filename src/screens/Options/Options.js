@@ -1,13 +1,13 @@
 import logo from '../../assets/images/logo-app.png'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { myColors, myFonts } from '../../utils'
-import { Icon, Icons, ItemOption } from '../../components'
+import { Icon, Icons } from '../../components'
 import { useNavigation } from '@react-navigation/native'
+import OptionItem from './components/OptionItem'
 
 
 const Options = () => {
    const navigation = useNavigation()
-
 
 
    return (
@@ -26,6 +26,7 @@ const Options = () => {
             </View>
             <Text style={styles.nameUser}>Hải James</Text>
             <TouchableOpacity
+               activeOpacity={0.5}
                style={styles.boxEdit}
                onPress={() => navigation.navigate('EditProfile')}>
                <Text style={styles.fontLexend}>Chỉnh Sửa Tài Khoản</Text>
@@ -38,23 +39,24 @@ const Options = () => {
          </View>
 
          <View style={styles.containerItem}>
-            <ItemOption
-               iconName='receipt'
+            <OptionItem
+               iconType={Icons.FontAwesome6}
+               iconName='user'
                title='Thông tin tài khoản'
                onPress={() => navigation.navigate('Profile')} />
-            <ItemOption
+            <OptionItem
                iconName='receipt'
                title='Voucher của tôi' />
-            <ItemOption
+            <OptionItem
                iconName='receipt'
                title='Danh sách đơn hàng'
                onPress={() => navigation.navigate('Order')} />
-            <ItemOption
+            <OptionItem
                iconName='location-sharp'
                title='Địa chỉ giao hàng'
                onPress={() => navigation.navigate('Address')} />
-            <ItemOption
-               iconName='settings'
+            <OptionItem
+               iconName='settings-sharp'
                title='Cài đặt'
                onPress={() => navigation.navigate('Settings')} />
          </View>

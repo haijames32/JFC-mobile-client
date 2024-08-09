@@ -1,8 +1,7 @@
-import { StyleSheet, View, Image, Text } from "react-native"
+import { StyleSheet, View, ImageBackground } from "react-native"
 import { myColors, myFonts, WINDOW_WIDTH } from "../../utils"
 import { Header } from "../../components"
 import { FlashList } from "@shopify/flash-list"
-import FastImage from "react-native-fast-image"
 import CategoryItem from "./components/CategoryItem"
 import { useNavigation } from "@react-navigation/native"
 
@@ -24,7 +23,9 @@ const Category = () => {
    ]
 
    return (
-      <View style={styles.container}>
+      <ImageBackground
+         source={require('../../assets/images/img-background.jpg')}
+         style={styles.container}>
          <Header
             title="Thực Đơn"
             isIconCart />
@@ -43,7 +44,7 @@ const Category = () => {
                   }} />
             )}
          />
-      </View>
+      </ImageBackground>
 
    )
 }
