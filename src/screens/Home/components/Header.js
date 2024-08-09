@@ -1,5 +1,5 @@
 import logo from '../../../assets/images/logo-app.png'
-import { Image, StyleSheet, Text, View } from "react-native"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { myColors, myFonts, WINDOW_WIDTH } from "../../../utils"
 import { Icon, Icons } from '../../../components'
 import { useNavigation } from '@react-navigation/native'
@@ -14,8 +14,14 @@ const Header = ({ name = '' }) => {
                style={styles.logo}
                source={logo} />
          </View>
-         <Text style={styles.txtName}>{name}</Text>
-
+         <View style={{ width: WINDOW_WIDTH * 0.63, paddingStart: 10 }}>
+            <TouchableOpacity
+               style={styles.boxName}
+               onPress={() => navigation.navigate('Options')}
+               activeOpacity={0.5}>
+               <Text style={styles.txtName}>{name}</Text>
+            </TouchableOpacity>
+         </View>
          <View style={styles.boxIcon}>
             <View>
                <Icon
@@ -67,12 +73,15 @@ const styles = StyleSheet.create({
       width: 40,
       borderRadius: 50
    },
+   boxName: {
+      height: '50%',
+      width: '60%',
+      justifyContent: 'center'
+   },
    txtName: {
       fontFamily: myFonts.semiBold,
       fontSize: 19,
       color: myColors.textWhile,
-      width: WINDOW_WIDTH * 0.63,
-      paddingStart: 10
    },
    boxIcon: {
       flex: 1,

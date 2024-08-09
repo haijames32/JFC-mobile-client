@@ -1,8 +1,8 @@
-import { StyleSheet, TouchableOpacity, Text } from "react-native"
-import { myColors, myFonts, WINDOW_WIDTH } from "../utils"
-import { Icon, Icons } from "./index"
+import { StyleSheet, TouchableOpacity, Text, View } from "react-native"
+import { myColors, myFonts, WINDOW_WIDTH } from "../../../utils"
+import { Icon, Icons } from "../../../components/index"
 
-const ItemOption = ({
+const OptionItem = ({
    title = '',
    onPress,
    iconType = Icons.Ionicons,
@@ -14,20 +14,22 @@ const ItemOption = ({
          activeOpacity={0.5}
          onPress={onPress}
          style={styles.container}>
-         <Icon
-            type={iconType}
-            name={iconName}
-            color={myColors.primary}
-            size={20} />
+         <View style={styles.boxIcon}>
+            <Icon
+               type={iconType}
+               name={iconName}
+               color={myColors.textWhile}
+               size={15} />
+         </View>
          <Text style={styles.title}>{title}</Text>
          <Icon
             name="chevron-forward-outline"
-            size={20} />
+            size={23} />
       </TouchableOpacity>
    )
 }
 
-export default ItemOption
+export default OptionItem
 
 const styles = StyleSheet.create({
    container: {
@@ -40,11 +42,19 @@ const styles = StyleSheet.create({
       borderBottomWidth: 0.3,
       borderBottomColor: myColors.textBlackHint
    },
+   boxIcon: {
+      width: 30,
+      height: 30,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 50,
+      backgroundColor: myColors.primary
+   },
    title: {
       fontFamily: myFonts.medium,
       fontSize: 16,
       color: myColors.textBlackHint,
-      paddingHorizontal: 25,
-      width: WINDOW_WIDTH * 0.8
+      paddingHorizontal: 20,
+      width: WINDOW_WIDTH * 0.78,
    },
 })

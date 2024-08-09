@@ -47,9 +47,11 @@ const StackNavigation = () => {
             <Stack.Screen name="Address" component={Address} />
             <Stack.Screen name="EditAddress" component={EditAddress} />
             <Stack.Screen name="CreateOrder" component={CreateOrder} />
+            <Stack.Group screenOptions={{ presentation: 'transparentModal', animation: 'flip' }}>
+               <Stack.Screen name="Cart" component={Cart} />
+            </Stack.Group>
             <Stack.Group
                screenOptions={{ presentation: 'transparentModal', animation: 'fade' }}>
-               <Stack.Screen name="Cart" component={Cart} />
                <Stack.Screen name="Loading" component={Loading} />
                <Stack.Screen name="Message" component={Message} />
                <Stack.Screen name="Confirm" component={Confirm} />
